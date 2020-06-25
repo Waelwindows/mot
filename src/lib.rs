@@ -1,12 +1,13 @@
+#![feature(seek_convenience)]
 pub mod read;
-mod write;
+mod write_alt;
 
 pub struct Motion {
     pub sets: Vec<FrameData>,
     pub bones: Vec<usize>,
 }
 
-#[derive(Debug, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd, Clone)]
 pub enum FrameData {
     None,
     Pose(f32),

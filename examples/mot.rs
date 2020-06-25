@@ -1,7 +1,8 @@
 use anyhow::*;
 use bvh_anim::*;
-use mot::*;
+use diva_db::bone::*;
 use diva_db::mot::*;
+use mot::*;
 use structopt::StructOpt;
 
 use std::path::PathBuf;
@@ -12,6 +13,9 @@ struct Opt {
     #[structopt(parse(from_os_str))]
     mot_db: PathBuf,
 
+    #[structopt(parse(from_os_str))]
+    bone_db: PathBuf,
+
     /// Input file
     #[structopt(parse(from_os_str))]
     input: PathBuf,
@@ -19,10 +23,13 @@ struct Opt {
     #[structopt(parse(from_os_str))]
     bvh: PathBuf,
 
-    // id: Option<usize>,
-
     #[structopt(parse(from_os_str))]
-    output: Option<PathBuf>,
+    output: PathBuf,
+
+    #[structopt(default_value = "+x+z+y")]
+    orientation: String,
+
+    offset: Option<usize>,
 }
 
 use std::fs::File;
@@ -45,115 +52,117 @@ fn main() -> Result<()> {
     info!("starting up");
 
     let opt = Opt::from_args();
-    let mut file = File::open(&opt.input)?;
+    let mut file = File::open(&opt.input).context("failed to open mot file")?;
     let mut data = vec![];
-    file.read_to_end(&mut data)?;
+    file.read_to_end(&mut data).context("failed to read mot file")?;
 
-    let (_, mot) = Motion::parse(&data, Endianness::Little).unwrap();
-    let mut mot = mot;
+    let (_, mut mot) = Motion::parse(&data, Endianness::Little).unwrap();
 
-    for mut fd in mot.sets.iter_mut() {
-        use FrameData::*;
-        let new = match fd {
-            None => None,
-            Pose(p) => Pose(*p),
-            Linear(l) => Pose(l[0].value),
-            Smooth(l) => Pose(l[0].keyframe.value),
-        };
-        *fd = new;
-    }
-
-    let mut file = File::open(opt.bvh)?;
+    let mut file = File::open(opt.bvh).context("failed to open bvh")?;
     let mut data = vec![];
-    file.read_to_end(&mut data)?;
+    file.read_to_end(&mut data).context("failed to read bvh")?;
     let bvh = from_bytes(&data[..])?;
 
-    let mut file = File::open(opt.mot_db)?;
+    let mut file = File::open(opt.mot_db).context("failed to open mot_db")?;
     let mut data = vec![];
-    file.read_to_end(&mut data)?;
+    file.read_to_end(&mut data)
+        .context("failed to read mot_db")?;
     let (_, motset_db) = MotionSetDatabase::read(Endianness::Little)(&data[..]).unwrap();
 
-    let joints = bvh.joints();
-    let mut joint_ids = vec![];
-    for joint in joints {
-        let name = joint.data().name();
-        joint_ids.push(motset_db.bones.iter().position(|x| x == &name));
+    let mut file = File::open(opt.bone_db).context("failed to open bone_db")?;
+    let mut data = vec![];
+    file.read_to_end(&mut data)
+        .context("failed to read bone_db")?;
+    let (_, bone_db) = BoneDatabase::read(&data[..]).unwrap();
+
+    for mut set in mot.sets.iter_mut() {
+        *set = match set {
+            FrameData::None | FrameData::Pose(_) => continue,
+            FrameData::Linear(l) => FrameData::Pose(l[0].value),
+            FrameData::Smooth(l) => FrameData::Pose(l[0].keyframe.value),
+        }
     }
 
-    // X  Y Z BLENDER
-    // X -Z Y DIVA
-
-    match opt.id {
-        Some(id) if id != 69 => {
-            // let id = 3 * id;
-            set_joint(&mut mot.sets, &bvh, "root", id, false);
+    // let mut sets = vec![FrameData::None; BONE_IDX.len() * 3];
+    // let mut bones = vec![];
+    for joint in bvh.joints() {
+        let name = joint.data().name();
+        let bone_id = motset_db.bones.iter().position(|x| &x[..] == &name[..]);
+        let mut bone_id = match bone_id {
+            Some(n) => n,
+            None => {
+                error!("couldn't find bone `{}` in motset_db", name);
+                continue;
+            }
+        };
+        debug!("{}: {}", bone_id, name);
+        if name.contains("e_") {
+            bone_id += 1;
         }
-        _ => {
-            set_joint(&mut mot.sets, &bvh, "root", 0, false);
+        // bone_id = if bone_id < 5 { bone_id } else { bone_id +1 };
+        // if bone_id == 13 || name == "e_kao_cp" {
+        //     error!("-----------------HEAD TIME----------------");
+        //     bone_id = 12;
+        // }
+        let bone_id = mot.bones.iter().position(|x| *x == bone_id);
+        let mut bone_id = match bone_id {
+            Some(n) => n,
+            None => {
+                error!("couldn't find bone `{}` in const table", name);
+                continue;
+            }
+        };
 
-            // Forward and backwards BLENDER -Y
-            set_joint(&mut mot.sets, &bvh, "root", 1, true);
-            // set_joint(&mut mot.sets, &bvh, "hip", 5, true);
-            set_joint(&mut mot.sets, &bvh, "spine01", 7, true);
-            // set_joint(&mut mot.sets, &bvh, "spine02", 8, true);
-            set_joint(&mut mot.sets, &bvh, "spine03", 9, true);
-
-            //hands ?
-            // id 3 * 12 is head IK
-            // id 3 * 14 is creepo miku mode
-            // id 3 * 15 is chin ???
-            // id 3 * 16 is chin ???
-            // id 3 * 17 is nothing ?
-            // id 3 * 18 is hair ??
-            //
-            // id 3 * 6 is mune ik
-            // id 3 * 8 is some mune ik ??
-            // id 3 * 12 is head ik ??
-
-            //6 mune
-            //6 kubi
-            set_joint(&mut mot.sets, &bvh, "mune", 6, false);
-            set_joint(&mut mot.sets, &bvh, "neck", 10, true);
-
-            // 12 kao ?
-            set_joint(&mut mot.sets, &bvh, "kao", 12, false);
-
-            // L ude 104
-            // L arm twist 105
-            // L arm twist 106
-            // L ude twist 168
-            // set_joint(&mut mot.sets, &bvh, "l_kata", 102, true);
-            set_joint(&mut mot.sets, &bvh, "l_ude", 104, false);
-            // set_joint(&mut mot.sets, &bvh, "l_hand", 106, true);
-            set_joint(&mut mot.sets, &bvh, "l_ude_pole", 168, false);
-            // L hand 106
-
-            // 135 R kata
-            // 137 R ude
-            // 169 R ude twist
-            // set_joint(&mut mot.sets, &bvh, "r_kata", 135, true);
-            set_joint(&mut mot.sets, &bvh, "r_ude", 137, false);
-            // set_joint(&mut mot.sets, &bvh, "r_hand", 139, true);
-            set_joint(&mut mot.sets, &bvh, "r_ude_pole", 169, false);
-
-            // 173 L sune
-            // 174 L sune twist
-            set_joint(&mut mot.sets, &bvh, "l_foot", 173, false);
-
-            // 178 R sune
-            // 179 R sune twist
-            set_joint(&mut mot.sets, &bvh, "r_foot", 178, false);
+        // match bone_id {
+        //     0 | 1 => (),
+        //     _ => bone_id += opt.offset.unwrap_or(0),
+        // };
+        let rot = bone_db.skeletons[0]
+            .bones
+            .iter()
+            .find(|x| &x.name[..] == &name[..])
+            .map(|x| x.mode)
+            .unwrap_or(BoneType::Position)
+            == BoneType::Rotation;
+        // if !(name == "n_hara_cp" || name == "kg_hara_y") {
+        //     continue;
+        // }
+        let skip = [8];
+        if skip.iter().find(|x| **x == bone_id).is_some() {
+            continue
         }
-    };
+        warn!("adding {} at {}", name, bone_id);
+        let [x, y, z] = convert_joint_default(&bvh, &joint, rot, &opt.orientation);
+        // sets.push((bone_id, frame));
+        mot.sets[3*bone_id+0] = x;
+        mot.sets[3*bone_id+1] = y;
+        mot.sets[3*bone_id+2] = z;
+        // bones.push(id);
+    }
 
-    let path = opt.output.unwrap_or(opt.input);
-    let mut file = File::create(path)?;
-    let mut save = vec![];
+    // sets.insert(2, FrameData::None);
+    // sets.insert(2, FrameData::None);
+    // sets.insert(2, FrameData::None);
 
-    let out = gen(mot.pub_write(), save)?;
-    let save = out.0;
+    // bones[0] = 1;
+    // bones[1] = 0;
 
-    io::copy(&mut (&save[..]), &mut file)?;
+    // let mut bones_idx: Vec<(usize, &str)> = motset_db.bones.iter().map(|x| &x[..]).enumerate().collect();
+    // bones_idx.sort_by(|(_, s1), (_, s2)| s1.cmp(s2));
+    // let bones = bones_idx.into_iter().map(|(i, _)| i).collect();
+
+    // warn!("bone ids: {:?}", &BONE_IDX[..]);
+
+    // let mot = Motion { sets, bones: BONE_IDX.to_vec() };
+
+    let mut file = File::create(opt.output)?;
+    // let mut save = vec![];
+
+    // let out = gen(mot.pub_write(), save)?;
+    // let save = out.0;
+
+    // io::copy(&mut (&save[..]), &mut file)?;
+    mot.write()(&mut file)?;
 
     Ok(())
 }
@@ -171,18 +180,6 @@ fn convert(bvh: &Bvh, chan: &Channel, conv: f32, off: f32) -> Vec<Keyframe> {
         .collect()
 }
 
-fn convert3(
-    bvh: &Bvh,
-    chan: [&Channel; 3],
-    con: f32,
-    (xoff, yoff, zoff): (f32, f32, f32),
-) -> [Vec<Keyframe>; 3] {
-    let x = convert(bvh, chan[0], con, xoff);
-    let y = convert(bvh, chan[1], con, yoff);
-    let z = convert(bvh, chan[2], con, zoff);
-    [x, y, z]
-}
-
 fn convert33(
     bvh: &Bvh,
     chan: [&Channel; 3],
@@ -198,21 +195,76 @@ fn convert33(
 fn convert_joint(
     bvh: &Bvh,
     joint: &Joint,
-    conv: (f32, f32, f32),
+    coor: &str,
+    mut conv: (f32, f32, f32),
     off: (f32, f32, f32),
-    rot: bool
+    rot: bool,
 ) -> [Vec<Keyframe>; 3] {
     let channels = joint.data().channels();
-    let rot = if rot && channels.len() > 3 { 3 } else {0};
-    let x = channels[0 + rot];
-    let y = channels[1 + rot];
-    let z = channels[2 + rot];
+    let rot_chan = if rot && channels.len() > 3 { 3 } else { 0 };
+    let x = channels[0 + rot_chan];
+    let y = channels[1 + rot_chan];
+    let z = channels[2 + rot_chan];
+    if rot {
+        let pi = std::f32::consts::PI;
+        let deg = pi / 180.;
+        conv = (deg * conv.0, deg * conv.1, deg * conv.2);
+        debug!("bone is rot");
+    }
+    match &coor[0..1] {
+        "0" => conv.0 = 0.,
+        "-" => conv.0 = conv.0 * -1.,
+        "+" => (),
+        e => panic!("encountered unexpected sign `{}`", e)
+    }
+    match &coor[2..3] {
+        "0" => conv.1 = 0.,
+        "-" => conv.1 = conv.1 * -1.,
+        "+" => (),
+        e => panic!("encountered unexpected sign `{}`", e)
+    }
+    match &coor[4..5] {
+        "0" => conv.2 = 0.,
+        "-" => conv.2 = conv.2 * -1.,
+        "+" => (),
+        e => panic!("encountered unexpected sign `{}`", e)
+    }
+    let x = match &coor[1..2] {
+        "x" => x,
+        "y" => y,
+        "z" => z,
+        e => panic!("encountered unexpected axis `{}`", e)
+    };
+    let y = match &coor[3..4] {
+        "x" => x,
+        "y" => y,
+        "z" => z,
+        e => panic!("encountered unexpected axis `{}`", e)
+    };
+    let z = match &coor[5..6] {
+        "x" => x,
+        "y" => y,
+        "z" => z,
+        e => panic!("encountered unexpected axis `{}`", e)
+    };
     convert33(&bvh, [&x, &z, &y], conv, off)
+}
+
+fn convert_joint_default(bvh: &Bvh, joint: &Joint, rot: bool, coor: &str) -> [FrameData; 3] {
+    let scale = 1.0;
+    let conv = (scale * 1., scale * 1., scale * -1.);
+    let off = (0., 0., 0.);
+    let [x, y, z] = convert_joint(bvh, joint, coor, conv, off, rot);
+    [
+        FrameData::Linear(x),
+        FrameData::Linear(y),
+        FrameData::Linear(z),
+    ]
 }
 
 use log::*;
 
-fn set_joint(sets: &mut Vec<FrameData>, bvh: &Bvh, joint_name: &str, id: usize, rot: bool)  {
+fn set_joint(sets: &mut Vec<FrameData>, bvh: &Bvh, joint_name: &str, coor: &str, id: usize, rot: bool) {
     let joint = bvh.joints().find_by_name(joint_name);
     let joint = match joint {
         Some(j) => j,
@@ -223,9 +275,9 @@ fn set_joint(sets: &mut Vec<FrameData>, bvh: &Bvh, joint_name: &str, id: usize, 
     };
     let pi = std::f32::consts::PI;
     let deg = pi / 180.;
-    let conv = if rot { (deg, deg, -deg) } else { (1., 1., -1.) };
+    let conv = if rot { (deg, deg, -deg) } else { (1., 1., 1.) };
     let off = (0., 0., 0.);
-    let [x, y, z] = convert_joint(bvh, &joint, conv, off, rot);
+    let [x, y, z] = convert_joint(bvh, &joint, coor, conv, off, rot);
     sets[3 * id + 0] = FrameData::Linear(x);
     sets[3 * id + 1] = FrameData::Linear(y);
     sets[3 * id + 2] = FrameData::Linear(z);

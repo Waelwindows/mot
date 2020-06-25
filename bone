@@ -1,0 +1,405 @@
+Set count: 583
+000: motid 000 bonedb Some(0) Some(Bone { mode: Type3, parent: None, pole_target: None, mirror: None, unk2: 0, name: "n_hara_cp" })
+001: motid 001 bonedb Some(1) Some(Bone { mode: Rotation, parent: Some(0), pole_target: None, mirror: None, unk2: 0, name: "kg_hara_y" })
+002: motid 002 bonedb Some(2) Some(Bone { mode: Rotation, parent: Some(1), pole_target: None, mirror: None, unk2: 0, name: "kl_hara_xz" })
+003: motid 003 bonedb Some(3) Some(Bone { mode: Rotation, parent: Some(2), pole_target: None, mirror: None, unk2: 0, name: "kl_hara_etc" })
+004: motid 004 bonedb Some(4) Some(Bone { mode: Rotation, parent: Some(3), pole_target: None, mirror: None, unk2: 0, name: "n_hara" })
+005: motid 005 bonedb None None
+006: motid 006 bonedb Some(5) Some(Bone { mode: Type4, parent: Some(4), pole_target: None, mirror: None, unk2: 0, name: "cl_mune" })
+007: motid 007 bonedb Some(6) Some(Bone { mode: Rotation, parent: Some(5), pole_target: None, mirror: None, unk2: 0, name: "n_mune_b" })
+008: motid 008 bonedb Some(7) Some(Bone { mode: Rotation, parent: Some(6), pole_target: None, mirror: None, unk2: 0, name: "kl_mune_b_wj" })
+009: motid 009 bonedb Some(8) Some(Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: None, unk2: 0, name: "kl_kubi" })
+010: motid 010 bonedb Some(9) Some(Bone { mode: Rotation, parent: Some(8), pole_target: None, mirror: None, unk2: 0, name: "n_kao" })
+011: motid 011 bonedb None None
+012: motid 012 bonedb Some(10) Some(Bone { mode: Type4, parent: Some(9), pole_target: None, mirror: None, unk2: 0, name: "cl_kao" })
+013: motid 013 bonedb Some(11) Some(Bone { mode: Rotation, parent: Some(10), pole_target: None, mirror: None, unk2: 0, name: "face_root" })
+014: motid 022 bonedb Some(12) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_ago" })
+015: motid 024 bonedb Some(13) Some(Bone { mode: Rotation, parent: Some(12), pole_target: None, mirror: None, unk2: 0, name: "kl_ago_wj" })
+016: motid 173 bonedb Some(14) Some(Bone { mode: Rotation, parent: Some(13), pole_target: None, mirror: None, unk2: 0, name: "n_tooth_under" })
+017: motid 174 bonedb Some(15) Some(Bone { mode: Position, parent: Some(14), pole_target: None, mirror: None, unk2: 0, name: "tl_tooth_under_wj" })
+018: motid 175 bonedb Some(16) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(20), unk2: 0, name: "n_eye_l" })
+019: motid 176 bonedb Some(17) Some(Bone { mode: Rotation, parent: Some(16), pole_target: None, mirror: Some(21), unk2: 0, name: "kl_eye_l" })
+020: motid 177 bonedb Some(18) Some(Bone { mode: Rotation, parent: Some(17), pole_target: None, mirror: Some(22), unk2: 2, name: "n_eye_l_wj_ex" })
+021: motid 178 bonedb Some(19) Some(Bone { mode: Rotation, parent: Some(18), pole_target: None, mirror: Some(23), unk2: 0, name: "kl_highlight_l_wj" })
+022: motid 179 bonedb Some(20) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(16), unk2: 0, name: "n_eye_r" })
+023: motid 180 bonedb Some(21) Some(Bone { mode: Rotation, parent: Some(20), pole_target: None, mirror: Some(17), unk2: 0, name: "kl_eye_r" })
+024: motid 181 bonedb Some(22) Some(Bone { mode: Rotation, parent: Some(21), pole_target: None, mirror: Some(18), unk2: 2, name: "n_eye_r_wj_ex" })
+025: motid 182 bonedb Some(23) Some(Bone { mode: Rotation, parent: Some(22), pole_target: None, mirror: Some(19), unk2: 0, name: "kl_highlight_r_wj" })
+026: motid 183 bonedb Some(24) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(28), unk2: 0, name: "n_eyelid_l_a" })
+027: motid 184 bonedb Some(25) Some(Bone { mode: Position, parent: Some(24), pole_target: None, mirror: Some(29), unk2: 0, name: "tl_eyelid_l_a_wj" })
+028: motid 185 bonedb Some(26) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(30), unk2: 0, name: "n_eyelid_l_b" })
+029: motid 186 bonedb Some(27) Some(Bone { mode: Position, parent: Some(26), pole_target: None, mirror: Some(31), unk2: 0, name: "tl_eyelid_l_b_wj" })
+030: motid 187 bonedb Some(28) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(24), unk2: 0, name: "n_eyelid_r_a" })
+031: motid 188 bonedb Some(29) Some(Bone { mode: Position, parent: Some(28), pole_target: None, mirror: Some(25), unk2: 0, name: "tl_eyelid_r_a_wj" })
+032: motid 189 bonedb Some(30) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(26), unk2: 0, name: "n_eyelid_r_b" })
+033: motid 190 bonedb Some(31) Some(Bone { mode: Position, parent: Some(30), pole_target: None, mirror: Some(27), unk2: 0, name: "tl_eyelid_r_b_wj" })
+034: motid 040 bonedb Some(32) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_kuti_d" })
+035: motid 041 bonedb Some(33) Some(Bone { mode: Position, parent: Some(32), pole_target: None, mirror: None, unk2: 0, name: "tl_kuti_d_wj" })
+036: motid 042 bonedb Some(34) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(36), unk2: 0, name: "n_kuti_d_l" })
+037: motid 043 bonedb Some(35) Some(Bone { mode: Position, parent: Some(34), pole_target: None, mirror: Some(37), unk2: 0, name: "tl_kuti_d_l_wj" })
+038: motid 044 bonedb Some(36) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(34), unk2: 0, name: "n_kuti_d_r" })
+039: motid 045 bonedb Some(37) Some(Bone { mode: Position, parent: Some(36), pole_target: None, mirror: Some(35), unk2: 0, name: "tl_kuti_d_r_wj" })
+040: motid 251 bonedb Some(38) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(40), unk2: 0, name: "n_kuti_ds_l" })
+041: motid 252 bonedb Some(39) Some(Bone { mode: Position, parent: Some(38), pole_target: None, mirror: Some(41), unk2: 0, name: "tl_kuti_ds_l_wj" })
+042: motid 253 bonedb Some(40) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(38), unk2: 0, name: "n_kuti_ds_r" })
+043: motid 254 bonedb Some(41) Some(Bone { mode: Position, parent: Some(40), pole_target: None, mirror: Some(39), unk2: 0, name: "tl_kuti_ds_r_wj" })
+044: motid 046 bonedb Some(42) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(48), unk2: 0, name: "n_kuti_l" })
+045: motid 047 bonedb Some(43) Some(Bone { mode: Position, parent: Some(42), pole_target: None, mirror: Some(49), unk2: 0, name: "tl_kuti_l_wj" })
+046: motid 247 bonedb Some(44) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(46), unk2: 0, name: "n_kuti_m_l" })
+047: motid 248 bonedb Some(45) Some(Bone { mode: Position, parent: Some(44), pole_target: None, mirror: Some(47), unk2: 0, name: "tl_kuti_m_l_wj" })
+048: motid 249 bonedb Some(46) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(44), unk2: 0, name: "n_kuti_m_r" })
+049: motid 250 bonedb Some(47) Some(Bone { mode: Position, parent: Some(46), pole_target: None, mirror: Some(45), unk2: 0, name: "tl_kuti_m_r_wj" })
+050: motid 048 bonedb Some(48) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(42), unk2: 0, name: "n_kuti_r" })
+051: motid 049 bonedb Some(49) Some(Bone { mode: Position, parent: Some(48), pole_target: None, mirror: Some(43), unk2: 0, name: "tl_kuti_r_wj" })
+052: motid 050 bonedb Some(50) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_kuti_u" })
+053: motid 051 bonedb Some(51) Some(Bone { mode: Position, parent: Some(50), pole_target: None, mirror: None, unk2: 0, name: "tl_kuti_u_wj" })
+054: motid 052 bonedb Some(52) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(54), unk2: 0, name: "n_kuti_u_l" })
+055: motid 053 bonedb Some(53) Some(Bone { mode: Position, parent: Some(52), pole_target: None, mirror: Some(55), unk2: 0, name: "tl_kuti_u_l_wj" })
+056: motid 054 bonedb Some(54) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(52), unk2: 0, name: "n_kuti_u_r" })
+057: motid 055 bonedb Some(55) Some(Bone { mode: Position, parent: Some(54), pole_target: None, mirror: Some(53), unk2: 0, name: "tl_kuti_u_r_wj" })
+058: motid 191 bonedb Some(56) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(70), unk2: 0, name: "n_mabu_l_d_a" })
+059: motid 192 bonedb Some(57) Some(Bone { mode: Position, parent: Some(56), pole_target: None, mirror: Some(71), unk2: 0, name: "tl_mabu_l_d_a_wj" })
+060: motid 193 bonedb Some(58) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(72), unk2: 0, name: "n_mabu_l_d_b" })
+061: motid 194 bonedb Some(59) Some(Bone { mode: Position, parent: Some(58), pole_target: None, mirror: Some(73), unk2: 0, name: "tl_mabu_l_d_b_wj" })
+062: motid 195 bonedb Some(60) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(74), unk2: 0, name: "n_mabu_l_d_c" })
+063: motid 196 bonedb Some(61) Some(Bone { mode: Position, parent: Some(60), pole_target: None, mirror: Some(75), unk2: 0, name: "tl_mabu_l_d_c_wj" })
+064: motid 197 bonedb Some(62) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(76), unk2: 0, name: "n_mabu_l_u_a" })
+065: motid 198 bonedb Some(63) Some(Bone { mode: Position, parent: Some(62), pole_target: None, mirror: Some(77), unk2: 0, name: "tl_mabu_l_u_a_wj" })
+066: motid 199 bonedb Some(64) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(78), unk2: 0, name: "n_mabu_l_u_b" })
+067: motid 200 bonedb Some(65) Some(Bone { mode: Position, parent: Some(64), pole_target: None, mirror: Some(79), unk2: 0, name: "tl_mabu_l_u_b_wj" })
+068: motid 201 bonedb Some(66) Some(Bone { mode: Rotation, parent: Some(65), pole_target: None, mirror: Some(80), unk2: 0, name: "n_eyelashes_l" })
+069: motid 202 bonedb Some(67) Some(Bone { mode: Position, parent: Some(66), pole_target: None, mirror: Some(81), unk2: 0, name: "tl_eyelashes_l_wj" })
+070: motid 203 bonedb Some(68) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(82), unk2: 0, name: "n_mabu_l_u_c" })
+071: motid 204 bonedb Some(69) Some(Bone { mode: Position, parent: Some(68), pole_target: None, mirror: Some(83), unk2: 0, name: "tl_mabu_l_u_c_wj" })
+072: motid 205 bonedb Some(70) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(56), unk2: 0, name: "n_mabu_r_d_a" })
+073: motid 206 bonedb Some(71) Some(Bone { mode: Position, parent: Some(70), pole_target: None, mirror: Some(57), unk2: 0, name: "tl_mabu_r_d_a_wj" })
+074: motid 207 bonedb Some(72) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(58), unk2: 0, name: "n_mabu_r_d_b" })
+075: motid 208 bonedb Some(73) Some(Bone { mode: Position, parent: Some(72), pole_target: None, mirror: Some(59), unk2: 0, name: "tl_mabu_r_d_b_wj" })
+076: motid 209 bonedb Some(74) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(60), unk2: 0, name: "n_mabu_r_d_c" })
+077: motid 210 bonedb Some(75) Some(Bone { mode: Position, parent: Some(74), pole_target: None, mirror: Some(61), unk2: 0, name: "tl_mabu_r_d_c_wj" })
+078: motid 211 bonedb Some(76) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(62), unk2: 0, name: "n_mabu_r_u_a" })
+079: motid 212 bonedb Some(77) Some(Bone { mode: Position, parent: Some(76), pole_target: None, mirror: Some(63), unk2: 0, name: "tl_mabu_r_u_a_wj" })
+080: motid 213 bonedb Some(78) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(64), unk2: 0, name: "n_mabu_r_u_b" })
+081: motid 214 bonedb Some(79) Some(Bone { mode: Position, parent: Some(78), pole_target: None, mirror: Some(65), unk2: 0, name: "tl_mabu_r_u_b_wj" })
+082: motid 215 bonedb Some(80) Some(Bone { mode: Rotation, parent: Some(79), pole_target: None, mirror: Some(66), unk2: 0, name: "n_eyelashes_r" })
+083: motid 216 bonedb Some(81) Some(Bone { mode: Position, parent: Some(80), pole_target: None, mirror: Some(67), unk2: 0, name: "tl_eyelashes_r_wj" })
+084: motid 217 bonedb Some(82) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(68), unk2: 0, name: "n_mabu_r_u_c" })
+085: motid 218 bonedb Some(83) Some(Bone { mode: Position, parent: Some(82), pole_target: None, mirror: Some(69), unk2: 0, name: "tl_mabu_r_u_c_wj" })
+086: motid 064 bonedb Some(84) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(90), unk2: 0, name: "n_mayu_l" })
+087: motid 065 bonedb Some(85) Some(Bone { mode: Position, parent: Some(84), pole_target: None, mirror: Some(91), unk2: 0, name: "tl_mayu_l_wj" })
+088: motid 219 bonedb Some(86) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(92), unk2: 0, name: "n_mayu_l_b" })
+089: motid 220 bonedb Some(87) Some(Bone { mode: Position, parent: Some(86), pole_target: None, mirror: Some(93), unk2: 0, name: "tl_mayu_l_b_wj" })
+090: motid 221 bonedb Some(88) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(94), unk2: 0, name: "n_mayu_l_c" })
+091: motid 222 bonedb Some(89) Some(Bone { mode: Position, parent: Some(88), pole_target: None, mirror: Some(95), unk2: 0, name: "tl_mayu_l_c_wj" })
+092: motid 066 bonedb Some(90) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(84), unk2: 0, name: "n_mayu_r" })
+093: motid 067 bonedb Some(91) Some(Bone { mode: Position, parent: Some(90), pole_target: None, mirror: Some(85), unk2: 0, name: "tl_mayu_r_wj" })
+094: motid 223 bonedb Some(92) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(86), unk2: 0, name: "n_mayu_r_b" })
+095: motid 224 bonedb Some(93) Some(Bone { mode: Position, parent: Some(92), pole_target: None, mirror: Some(87), unk2: 0, name: "tl_mayu_r_b_wj" })
+096: motid 225 bonedb Some(94) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(88), unk2: 0, name: "n_mayu_r_c" })
+097: motid 226 bonedb Some(95) Some(Bone { mode: Position, parent: Some(94), pole_target: None, mirror: Some(89), unk2: 0, name: "tl_mayu_r_c_wj" })
+098: motid 227 bonedb Some(96) Some(Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_tooth_upper" })
+099: motid 228 bonedb Some(97) Some(Bone { mode: Position, parent: Some(96), pole_target: None, mirror: None, unk2: 0, name: "tl_tooth_upper_wj" })
+100: motid 068 bonedb Some(98) Some(Bone { mode: Rotation, parent: Some(8), pole_target: None, mirror: None, unk2: 1, name: "n_kubi_wj_ex" })
+101: motid 069 bonedb Some(99) Some(Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: Some(132), unk2: 0, name: "n_waki_l" })
+102: motid 070 bonedb Some(100) Some(Bone { mode: Rotation, parent: Some(99), pole_target: None, mirror: Some(133), unk2: 0, name: "kl_waki_l_wj" })
+103: motid 071 bonedb None None
+104: motid 072 bonedb Some(102) Some(Bone { mode: Type5, parent: Some(100), pole_target: Some(101), mirror: Some(135), unk2: 0, name: "c_kata_l" })
+105: motid 073 bonedb Some(103) Some(Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(136), unk2: 0, name: "kl_te_l_wj" })
+106: motid 229 bonedb Some(104) Some(Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(137), unk2: 3, name: "n_hito_l_ex" })
+107: motid 074 bonedb Some(105) Some(Bone { mode: Rotation, parent: Some(106), pole_target: None, mirror: Some(138), unk2: 0, name: "nl_hito_l_wj" })
+108: motid 075 bonedb Some(106) Some(Bone { mode: Rotation, parent: Some(107), pole_target: None, mirror: Some(139), unk2: 0, name: "nl_hito_b_l_wj" })
+109: motid 076 bonedb Some(107) Some(Bone { mode: Rotation, parent: Some(108), pole_target: None, mirror: Some(140), unk2: 0, name: "nl_hito_c_l_wj" })
+110: motid 230 bonedb Some(108) Some(Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(141), unk2: 3, name: "n_ko_l_ex" })
+111: motid 077 bonedb Some(109) Some(Bone { mode: Rotation, parent: Some(110), pole_target: None, mirror: Some(142), unk2: 0, name: "nl_ko_l_wj" })
+112: motid 078 bonedb Some(110) Some(Bone { mode: Rotation, parent: Some(111), pole_target: None, mirror: Some(143), unk2: 0, name: "nl_ko_b_l_wj" })
+113: motid 079 bonedb Some(111) Some(Bone { mode: Rotation, parent: Some(112), pole_target: None, mirror: Some(144), unk2: 0, name: "nl_ko_c_l_wj" })
+114: motid 231 bonedb Some(112) Some(Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(145), unk2: 3, name: "n_kusu_l_ex" })
+115: motid 080 bonedb Some(113) Some(Bone { mode: Rotation, parent: Some(114), pole_target: None, mirror: Some(146), unk2: 0, name: "nl_kusu_l_wj" })
+116: motid 081 bonedb Some(114) Some(Bone { mode: Rotation, parent: Some(115), pole_target: None, mirror: Some(147), unk2: 0, name: "nl_kusu_b_l_wj" })
+117: motid 082 bonedb Some(115) Some(Bone { mode: Rotation, parent: Some(116), pole_target: None, mirror: Some(148), unk2: 0, name: "nl_kusu_c_l_wj" })
+118: motid 232 bonedb Some(116) Some(Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(149), unk2: 3, name: "n_naka_l_ex" })
+119: motid 083 bonedb Some(117) Some(Bone { mode: Rotation, parent: Some(118), pole_target: None, mirror: Some(150), unk2: 0, name: "nl_naka_l_wj" })
+120: motid 084 bonedb Some(118) Some(Bone { mode: Rotation, parent: Some(119), pole_target: None, mirror: Some(151), unk2: 0, name: "nl_naka_b_l_wj" })
+121: motid 085 bonedb Some(119) Some(Bone { mode: Rotation, parent: Some(120), pole_target: None, mirror: Some(152), unk2: 0, name: "nl_naka_c_l_wj" })
+122: motid 233 bonedb Some(120) Some(Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(153), unk2: 3, name: "n_oya_l_ex" })
+123: motid 086 bonedb Some(121) Some(Bone { mode: Rotation, parent: Some(122), pole_target: None, mirror: Some(154), unk2: 0, name: "nl_oya_l_wj" })
+124: motid 087 bonedb Some(122) Some(Bone { mode: Rotation, parent: Some(123), pole_target: None, mirror: Some(155), unk2: 0, name: "nl_oya_b_l_wj" })
+125: motid 088 bonedb Some(123) Some(Bone { mode: Rotation, parent: Some(124), pole_target: None, mirror: Some(156), unk2: 0, name: "nl_oya_c_l_wj" })
+126: motid 089 bonedb Some(124) Some(Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(157), unk2: 1, name: "n_ste_l_wj_ex" })
+127: motid 090 bonedb Some(125) Some(Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(158), unk2: 1, name: "n_sude_l_wj_ex" })
+128: motid 091 bonedb Some(126) Some(Bone { mode: Rotation, parent: Some(127), pole_target: None, mirror: Some(159), unk2: 1, name: "n_sude_b_l_wj_ex" })
+129: motid 092 bonedb Some(127) Some(Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(160), unk2: 1, name: "n_hiji_l_wj_ex" })
+130: motid 234 bonedb Some(128) Some(Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(161), unk2: 3, name: "n_up_kata_l_ex" })
+131: motid 093 bonedb Some(129) Some(Bone { mode: Rotation, parent: Some(102), pole_target: None, mirror: Some(162), unk2: 4, name: "n_skata_l_wj_cd_ex" })
+132: motid 094 bonedb Some(130) Some(Bone { mode: Rotation, parent: Some(131), pole_target: None, mirror: Some(163), unk2: 4, name: "n_skata_b_l_wj_cd_cu_ex" })
+133: motid 095 bonedb Some(131) Some(Bone { mode: Rotation, parent: Some(132), pole_target: None, mirror: Some(164), unk2: 4, name: "n_skata_c_l_wj_cd_cu_ex" })
+134: motid 096 bonedb Some(132) Some(Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: Some(99), unk2: 0, name: "n_waki_r" })
+135: motid 097 bonedb Some(133) Some(Bone { mode: Rotation, parent: Some(134), pole_target: None, mirror: Some(100), unk2: 0, name: "kl_waki_r_wj" })
+136: motid 098 bonedb None None
+137: motid 099 bonedb Some(135) Some(Bone { mode: Type5, parent: Some(135), pole_target: Some(136), mirror: Some(102), unk2: 0, name: "c_kata_r" })
+138: motid 100 bonedb Some(136) Some(Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(103), unk2: 0, name: "kl_te_r_wj" })
+139: motid 235 bonedb Some(137) Some(Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(104), unk2: 3, name: "n_hito_r_ex" })
+140: motid 101 bonedb Some(138) Some(Bone { mode: Rotation, parent: Some(141), pole_target: None, mirror: Some(105), unk2: 0, name: "nl_hito_r_wj" })
+141: motid 102 bonedb Some(139) Some(Bone { mode: Rotation, parent: Some(142), pole_target: None, mirror: Some(106), unk2: 0, name: "nl_hito_b_r_wj" })
+142: motid 103 bonedb Some(140) Some(Bone { mode: Rotation, parent: Some(143), pole_target: None, mirror: Some(107), unk2: 0, name: "nl_hito_c_r_wj" })
+143: motid 236 bonedb Some(141) Some(Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(108), unk2: 3, name: "n_ko_r_ex" })
+144: motid 104 bonedb Some(142) Some(Bone { mode: Rotation, parent: Some(145), pole_target: None, mirror: Some(109), unk2: 0, name: "nl_ko_r_wj" })
+145: motid 105 bonedb Some(143) Some(Bone { mode: Rotation, parent: Some(146), pole_target: None, mirror: Some(110), unk2: 0, name: "nl_ko_b_r_wj" })
+146: motid 106 bonedb Some(144) Some(Bone { mode: Rotation, parent: Some(147), pole_target: None, mirror: Some(111), unk2: 0, name: "nl_ko_c_r_wj" })
+147: motid 237 bonedb Some(145) Some(Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(112), unk2: 3, name: "n_kusu_r_ex" })
+148: motid 107 bonedb Some(146) Some(Bone { mode: Rotation, parent: Some(149), pole_target: None, mirror: Some(113), unk2: 0, name: "nl_kusu_r_wj" })
+149: motid 108 bonedb Some(147) Some(Bone { mode: Rotation, parent: Some(150), pole_target: None, mirror: Some(114), unk2: 0, name: "nl_kusu_b_r_wj" })
+150: motid 109 bonedb Some(148) Some(Bone { mode: Rotation, parent: Some(151), pole_target: None, mirror: Some(115), unk2: 0, name: "nl_kusu_c_r_wj" })
+151: motid 238 bonedb Some(149) Some(Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(116), unk2: 3, name: "n_naka_r_ex" })
+152: motid 110 bonedb Some(150) Some(Bone { mode: Rotation, parent: Some(153), pole_target: None, mirror: Some(117), unk2: 0, name: "nl_naka_r_wj" })
+153: motid 111 bonedb Some(151) Some(Bone { mode: Rotation, parent: Some(154), pole_target: None, mirror: Some(118), unk2: 0, name: "nl_naka_b_r_wj" })
+154: motid 112 bonedb Some(152) Some(Bone { mode: Rotation, parent: Some(155), pole_target: None, mirror: Some(119), unk2: 0, name: "nl_naka_c_r_wj" })
+155: motid 239 bonedb Some(153) Some(Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(120), unk2: 3, name: "n_oya_r_ex" })
+156: motid 113 bonedb Some(154) Some(Bone { mode: Rotation, parent: Some(157), pole_target: None, mirror: Some(121), unk2: 0, name: "nl_oya_r_wj" })
+157: motid 114 bonedb Some(155) Some(Bone { mode: Rotation, parent: Some(158), pole_target: None, mirror: Some(122), unk2: 0, name: "nl_oya_b_r_wj" })
+158: motid 115 bonedb Some(156) Some(Bone { mode: Rotation, parent: Some(159), pole_target: None, mirror: Some(123), unk2: 0, name: "nl_oya_c_r_wj" })
+159: motid 116 bonedb Some(157) Some(Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(124), unk2: 1, name: "n_ste_r_wj_ex" })
+160: motid 117 bonedb Some(158) Some(Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(125), unk2: 1, name: "n_sude_r_wj_ex" })
+161: motid 118 bonedb Some(159) Some(Bone { mode: Rotation, parent: Some(162), pole_target: None, mirror: Some(126), unk2: 1, name: "n_sude_b_r_wj_ex" })
+162: motid 119 bonedb Some(160) Some(Bone { mode: Rotation, parent: Some(138), pole_target: None, mirror: Some(127), unk2: 1, name: "n_hiji_r_wj_ex" })
+163: motid 240 bonedb Some(161) Some(Bone { mode: Rotation, parent: Some(138), pole_target: None, mirror: Some(128), unk2: 3, name: "n_up_kata_r_ex" })
+164: motid 120 bonedb Some(162) Some(Bone { mode: Rotation, parent: Some(137), pole_target: None, mirror: Some(129), unk2: 4, name: "n_skata_r_wj_cd_ex" })
+165: motid 121 bonedb Some(163) Some(Bone { mode: Rotation, parent: Some(166), pole_target: None, mirror: Some(130), unk2: 4, name: "n_skata_b_r_wj_cd_cu_ex" })
+166: motid 122 bonedb Some(164) Some(Bone { mode: Rotation, parent: Some(167), pole_target: None, mirror: Some(131), unk2: 4, name: "n_skata_c_r_wj_cd_cu_ex" })
+167: motid 123 bonedb Some(101) Some(Bone { mode: Position, parent: Some(7), pole_target: None, mirror: Some(134), unk2: 0, name: "tl_up_kata_l" })
+168: motid 124 bonedb Some(134) Some(Bone { mode: Position, parent: Some(7), pole_target: None, mirror: Some(101), unk2: 0, name: "tl_up_kata_r" })
+169: motid 125 bonedb Some(165) Some(Bone { mode: Rotation, parent: Some(4), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_y" })
+170: motid 126 bonedb Some(166) Some(Bone { mode: Rotation, parent: Some(169), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_xz" })
+171: motid 127 bonedb Some(167) Some(Bone { mode: Rotation, parent: Some(170), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_etc_wj" })
+172: motid 128 bonedb None None
+173: motid 129 bonedb Some(168) Some(Bone { mode: Type6, parent: Some(171), pole_target: None, mirror: Some(172), unk2: 0, name: "cl_momo_l" })
+174: motid 130 bonedb Some(169) Some(Bone { mode: Rotation, parent: Some(174), pole_target: None, mirror: Some(173), unk2: 0, name: "kl_asi_l_wj_co" })
+175: motid 131 bonedb Some(170) Some(Bone { mode: Rotation, parent: Some(175), pole_target: None, mirror: Some(174), unk2: 0, name: "kl_toe_l_wj" })
+176: motid 132 bonedb Some(171) Some(Bone { mode: Rotation, parent: Some(173), pole_target: None, mirror: Some(175), unk2: 1, name: "n_hiza_l_wj_ex" })
+177: motid 133 bonedb None None
+178: motid 134 bonedb Some(172) Some(Bone { mode: Type6, parent: Some(171), pole_target: None, mirror: Some(168), unk2: 0, name: "cl_momo_r" })
+179: motid 135 bonedb Some(173) Some(Bone { mode: Rotation, parent: Some(180), pole_target: None, mirror: Some(169), unk2: 0, name: "kl_asi_r_wj_co" })
+180: motid 136 bonedb Some(174) Some(Bone { mode: Rotation, parent: Some(181), pole_target: None, mirror: Some(170), unk2: 0, name: "kl_toe_r_wj" })
+181: motid 137 bonedb Some(175) Some(Bone { mode: Rotation, parent: Some(179), pole_target: None, mirror: Some(171), unk2: 1, name: "n_hiza_r_wj_ex" })
+182: motid 241 bonedb Some(176) Some(Bone { mode: Rotation, parent: Some(171), pole_target: None, mirror: Some(179), unk2: 4, name: "n_momo_a_l_wj_cd_ex" })
+183: motid 139 bonedb Some(177) Some(Bone { mode: Rotation, parent: Some(184), pole_target: None, mirror: Some(180), unk2: 1, name: "n_momo_b_l_wj_ex" })
+184: motid 140 bonedb Some(178) Some(Bone { mode: Rotation, parent: Some(185), pole_target: None, mirror: Some(181), unk2: 1, name: "n_momo_c_l_wj_ex" })
+185: motid 242 bonedb Some(179) Some(Bone { mode: Rotation, parent: Some(171), pole_target: None, mirror: Some(176), unk2: 4, name: "n_momo_a_r_wj_cd_ex" })
+186: motid 142 bonedb Some(180) Some(Bone { mode: Rotation, parent: Some(187), pole_target: None, mirror: Some(177), unk2: 1, name: "n_momo_b_r_wj_ex" })
+187: motid 143 bonedb Some(181) Some(Bone { mode: Rotation, parent: Some(188), pole_target: None, mirror: Some(178), unk2: 1, name: "n_momo_c_r_wj_ex" })
+188: motid 144 bonedb Some(182) Some(Bone { mode: Rotation, parent: Some(4), pole_target: None, mirror: None, unk2: 4, name: "n_hara_cd_ex" })
+189: motid 145 bonedb Some(183) Some(Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_b_wj_ex" })
+190: motid 146 bonedb Some(184) Some(Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_c_wj_ex" })
+191: motid 147 bonedb None None
+192: motid 148 bonedb None None
+-----------------------------
+000: Bone { mode: Type3, parent: None, pole_target: None, mirror: None, unk2: 0, name: "n_hara_cp" }
+001: Bone { mode: Rotation, parent: Some(0), pole_target: None, mirror: None, unk2: 0, name: "kg_hara_y" }
+002: Bone { mode: Rotation, parent: Some(1), pole_target: None, mirror: None, unk2: 0, name: "kl_hara_xz" }
+003: Bone { mode: Rotation, parent: Some(2), pole_target: None, mirror: None, unk2: 0, name: "kl_hara_etc" }
+004: Bone { mode: Rotation, parent: Some(3), pole_target: None, mirror: None, unk2: 0, name: "n_hara" }
+005: Bone { mode: Type4, parent: Some(4), pole_target: None, mirror: None, unk2: 0, name: "cl_mune" }
+006: Bone { mode: Rotation, parent: Some(5), pole_target: None, mirror: None, unk2: 0, name: "n_mune_b" }
+007: Bone { mode: Rotation, parent: Some(6), pole_target: None, mirror: None, unk2: 0, name: "kl_mune_b_wj" }
+008: Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: None, unk2: 0, name: "kl_kubi" }
+009: Bone { mode: Rotation, parent: Some(8), pole_target: None, mirror: None, unk2: 0, name: "n_kao" }
+010: Bone { mode: Type4, parent: Some(9), pole_target: None, mirror: None, unk2: 0, name: "cl_kao" }
+011: Bone { mode: Rotation, parent: Some(10), pole_target: None, mirror: None, unk2: 0, name: "face_root" }
+012: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_ago" }
+013: Bone { mode: Rotation, parent: Some(12), pole_target: None, mirror: None, unk2: 0, name: "kl_ago_wj" }
+014: Bone { mode: Rotation, parent: Some(13), pole_target: None, mirror: None, unk2: 0, name: "n_tooth_under" }
+015: Bone { mode: Position, parent: Some(14), pole_target: None, mirror: None, unk2: 0, name: "tl_tooth_under_wj" }
+016: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(20), unk2: 0, name: "n_eye_l" }
+017: Bone { mode: Rotation, parent: Some(16), pole_target: None, mirror: Some(21), unk2: 0, name: "kl_eye_l" }
+018: Bone { mode: Rotation, parent: Some(17), pole_target: None, mirror: Some(22), unk2: 2, name: "n_eye_l_wj_ex" }
+019: Bone { mode: Rotation, parent: Some(18), pole_target: None, mirror: Some(23), unk2: 0, name: "kl_highlight_l_wj" }
+020: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(16), unk2: 0, name: "n_eye_r" }
+021: Bone { mode: Rotation, parent: Some(20), pole_target: None, mirror: Some(17), unk2: 0, name: "kl_eye_r" }
+022: Bone { mode: Rotation, parent: Some(21), pole_target: None, mirror: Some(18), unk2: 2, name: "n_eye_r_wj_ex" }
+023: Bone { mode: Rotation, parent: Some(22), pole_target: None, mirror: Some(19), unk2: 0, name: "kl_highlight_r_wj" }
+024: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(28), unk2: 0, name: "n_eyelid_l_a" }
+025: Bone { mode: Position, parent: Some(24), pole_target: None, mirror: Some(29), unk2: 0, name: "tl_eyelid_l_a_wj" }
+026: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(30), unk2: 0, name: "n_eyelid_l_b" }
+027: Bone { mode: Position, parent: Some(26), pole_target: None, mirror: Some(31), unk2: 0, name: "tl_eyelid_l_b_wj" }
+028: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(24), unk2: 0, name: "n_eyelid_r_a" }
+029: Bone { mode: Position, parent: Some(28), pole_target: None, mirror: Some(25), unk2: 0, name: "tl_eyelid_r_a_wj" }
+030: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(26), unk2: 0, name: "n_eyelid_r_b" }
+031: Bone { mode: Position, parent: Some(30), pole_target: None, mirror: Some(27), unk2: 0, name: "tl_eyelid_r_b_wj" }
+032: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_kuti_d" }
+033: Bone { mode: Position, parent: Some(32), pole_target: None, mirror: None, unk2: 0, name: "tl_kuti_d_wj" }
+034: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(36), unk2: 0, name: "n_kuti_d_l" }
+035: Bone { mode: Position, parent: Some(34), pole_target: None, mirror: Some(37), unk2: 0, name: "tl_kuti_d_l_wj" }
+036: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(34), unk2: 0, name: "n_kuti_d_r" }
+037: Bone { mode: Position, parent: Some(36), pole_target: None, mirror: Some(35), unk2: 0, name: "tl_kuti_d_r_wj" }
+038: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(40), unk2: 0, name: "n_kuti_ds_l" }
+039: Bone { mode: Position, parent: Some(38), pole_target: None, mirror: Some(41), unk2: 0, name: "tl_kuti_ds_l_wj" }
+040: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(38), unk2: 0, name: "n_kuti_ds_r" }
+041: Bone { mode: Position, parent: Some(40), pole_target: None, mirror: Some(39), unk2: 0, name: "tl_kuti_ds_r_wj" }
+042: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(48), unk2: 0, name: "n_kuti_l" }
+043: Bone { mode: Position, parent: Some(42), pole_target: None, mirror: Some(49), unk2: 0, name: "tl_kuti_l_wj" }
+044: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(46), unk2: 0, name: "n_kuti_m_l" }
+045: Bone { mode: Position, parent: Some(44), pole_target: None, mirror: Some(47), unk2: 0, name: "tl_kuti_m_l_wj" }
+046: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(44), unk2: 0, name: "n_kuti_m_r" }
+047: Bone { mode: Position, parent: Some(46), pole_target: None, mirror: Some(45), unk2: 0, name: "tl_kuti_m_r_wj" }
+048: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(42), unk2: 0, name: "n_kuti_r" }
+049: Bone { mode: Position, parent: Some(48), pole_target: None, mirror: Some(43), unk2: 0, name: "tl_kuti_r_wj" }
+050: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_kuti_u" }
+051: Bone { mode: Position, parent: Some(50), pole_target: None, mirror: None, unk2: 0, name: "tl_kuti_u_wj" }
+052: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(54), unk2: 0, name: "n_kuti_u_l" }
+053: Bone { mode: Position, parent: Some(52), pole_target: None, mirror: Some(55), unk2: 0, name: "tl_kuti_u_l_wj" }
+054: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(52), unk2: 0, name: "n_kuti_u_r" }
+055: Bone { mode: Position, parent: Some(54), pole_target: None, mirror: Some(53), unk2: 0, name: "tl_kuti_u_r_wj" }
+056: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(70), unk2: 0, name: "n_mabu_l_d_a" }
+057: Bone { mode: Position, parent: Some(56), pole_target: None, mirror: Some(71), unk2: 0, name: "tl_mabu_l_d_a_wj" }
+058: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(72), unk2: 0, name: "n_mabu_l_d_b" }
+059: Bone { mode: Position, parent: Some(58), pole_target: None, mirror: Some(73), unk2: 0, name: "tl_mabu_l_d_b_wj" }
+060: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(74), unk2: 0, name: "n_mabu_l_d_c" }
+061: Bone { mode: Position, parent: Some(60), pole_target: None, mirror: Some(75), unk2: 0, name: "tl_mabu_l_d_c_wj" }
+062: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(76), unk2: 0, name: "n_mabu_l_u_a" }
+063: Bone { mode: Position, parent: Some(62), pole_target: None, mirror: Some(77), unk2: 0, name: "tl_mabu_l_u_a_wj" }
+064: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(78), unk2: 0, name: "n_mabu_l_u_b" }
+065: Bone { mode: Position, parent: Some(64), pole_target: None, mirror: Some(79), unk2: 0, name: "tl_mabu_l_u_b_wj" }
+066: Bone { mode: Rotation, parent: Some(65), pole_target: None, mirror: Some(80), unk2: 0, name: "n_eyelashes_l" }
+067: Bone { mode: Position, parent: Some(66), pole_target: None, mirror: Some(81), unk2: 0, name: "tl_eyelashes_l_wj" }
+068: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(82), unk2: 0, name: "n_mabu_l_u_c" }
+069: Bone { mode: Position, parent: Some(68), pole_target: None, mirror: Some(83), unk2: 0, name: "tl_mabu_l_u_c_wj" }
+070: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(56), unk2: 0, name: "n_mabu_r_d_a" }
+071: Bone { mode: Position, parent: Some(70), pole_target: None, mirror: Some(57), unk2: 0, name: "tl_mabu_r_d_a_wj" }
+072: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(58), unk2: 0, name: "n_mabu_r_d_b" }
+073: Bone { mode: Position, parent: Some(72), pole_target: None, mirror: Some(59), unk2: 0, name: "tl_mabu_r_d_b_wj" }
+074: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(60), unk2: 0, name: "n_mabu_r_d_c" }
+075: Bone { mode: Position, parent: Some(74), pole_target: None, mirror: Some(61), unk2: 0, name: "tl_mabu_r_d_c_wj" }
+076: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(62), unk2: 0, name: "n_mabu_r_u_a" }
+077: Bone { mode: Position, parent: Some(76), pole_target: None, mirror: Some(63), unk2: 0, name: "tl_mabu_r_u_a_wj" }
+078: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(64), unk2: 0, name: "n_mabu_r_u_b" }
+079: Bone { mode: Position, parent: Some(78), pole_target: None, mirror: Some(65), unk2: 0, name: "tl_mabu_r_u_b_wj" }
+080: Bone { mode: Rotation, parent: Some(79), pole_target: None, mirror: Some(66), unk2: 0, name: "n_eyelashes_r" }
+081: Bone { mode: Position, parent: Some(80), pole_target: None, mirror: Some(67), unk2: 0, name: "tl_eyelashes_r_wj" }
+082: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(68), unk2: 0, name: "n_mabu_r_u_c" }
+083: Bone { mode: Position, parent: Some(82), pole_target: None, mirror: Some(69), unk2: 0, name: "tl_mabu_r_u_c_wj" }
+084: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(90), unk2: 0, name: "n_mayu_l" }
+085: Bone { mode: Position, parent: Some(84), pole_target: None, mirror: Some(91), unk2: 0, name: "tl_mayu_l_wj" }
+086: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(92), unk2: 0, name: "n_mayu_l_b" }
+087: Bone { mode: Position, parent: Some(86), pole_target: None, mirror: Some(93), unk2: 0, name: "tl_mayu_l_b_wj" }
+088: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(94), unk2: 0, name: "n_mayu_l_c" }
+089: Bone { mode: Position, parent: Some(88), pole_target: None, mirror: Some(95), unk2: 0, name: "tl_mayu_l_c_wj" }
+090: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(84), unk2: 0, name: "n_mayu_r" }
+091: Bone { mode: Position, parent: Some(90), pole_target: None, mirror: Some(85), unk2: 0, name: "tl_mayu_r_wj" }
+092: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(86), unk2: 0, name: "n_mayu_r_b" }
+093: Bone { mode: Position, parent: Some(92), pole_target: None, mirror: Some(87), unk2: 0, name: "tl_mayu_r_b_wj" }
+094: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: Some(88), unk2: 0, name: "n_mayu_r_c" }
+095: Bone { mode: Position, parent: Some(94), pole_target: None, mirror: Some(89), unk2: 0, name: "tl_mayu_r_c_wj" }
+096: Bone { mode: Rotation, parent: Some(11), pole_target: None, mirror: None, unk2: 0, name: "n_tooth_upper" }
+097: Bone { mode: Position, parent: Some(96), pole_target: None, mirror: None, unk2: 0, name: "tl_tooth_upper_wj" }
+098: Bone { mode: Rotation, parent: Some(8), pole_target: None, mirror: None, unk2: 1, name: "n_kubi_wj_ex" }
+099: Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: Some(132), unk2: 0, name: "n_waki_l" }
+100: Bone { mode: Rotation, parent: Some(99), pole_target: None, mirror: Some(133), unk2: 0, name: "kl_waki_l_wj" }
+101: Bone { mode: Position, parent: Some(7), pole_target: None, mirror: Some(134), unk2: 0, name: "tl_up_kata_l" }
+102: Bone { mode: Type5, parent: Some(100), pole_target: Some(101), mirror: Some(135), unk2: 0, name: "c_kata_l" }
+103: Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(136), unk2: 0, name: "kl_te_l_wj" }
+104: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(137), unk2: 3, name: "n_hito_l_ex" }
+105: Bone { mode: Rotation, parent: Some(106), pole_target: None, mirror: Some(138), unk2: 0, name: "nl_hito_l_wj" }
+106: Bone { mode: Rotation, parent: Some(107), pole_target: None, mirror: Some(139), unk2: 0, name: "nl_hito_b_l_wj" }
+107: Bone { mode: Rotation, parent: Some(108), pole_target: None, mirror: Some(140), unk2: 0, name: "nl_hito_c_l_wj" }
+108: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(141), unk2: 3, name: "n_ko_l_ex" }
+109: Bone { mode: Rotation, parent: Some(110), pole_target: None, mirror: Some(142), unk2: 0, name: "nl_ko_l_wj" }
+110: Bone { mode: Rotation, parent: Some(111), pole_target: None, mirror: Some(143), unk2: 0, name: "nl_ko_b_l_wj" }
+111: Bone { mode: Rotation, parent: Some(112), pole_target: None, mirror: Some(144), unk2: 0, name: "nl_ko_c_l_wj" }
+112: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(145), unk2: 3, name: "n_kusu_l_ex" }
+113: Bone { mode: Rotation, parent: Some(114), pole_target: None, mirror: Some(146), unk2: 0, name: "nl_kusu_l_wj" }
+114: Bone { mode: Rotation, parent: Some(115), pole_target: None, mirror: Some(147), unk2: 0, name: "nl_kusu_b_l_wj" }
+115: Bone { mode: Rotation, parent: Some(116), pole_target: None, mirror: Some(148), unk2: 0, name: "nl_kusu_c_l_wj" }
+116: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(149), unk2: 3, name: "n_naka_l_ex" }
+117: Bone { mode: Rotation, parent: Some(118), pole_target: None, mirror: Some(150), unk2: 0, name: "nl_naka_l_wj" }
+118: Bone { mode: Rotation, parent: Some(119), pole_target: None, mirror: Some(151), unk2: 0, name: "nl_naka_b_l_wj" }
+119: Bone { mode: Rotation, parent: Some(120), pole_target: None, mirror: Some(152), unk2: 0, name: "nl_naka_c_l_wj" }
+120: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(153), unk2: 3, name: "n_oya_l_ex" }
+121: Bone { mode: Rotation, parent: Some(122), pole_target: None, mirror: Some(154), unk2: 0, name: "nl_oya_l_wj" }
+122: Bone { mode: Rotation, parent: Some(123), pole_target: None, mirror: Some(155), unk2: 0, name: "nl_oya_b_l_wj" }
+123: Bone { mode: Rotation, parent: Some(124), pole_target: None, mirror: Some(156), unk2: 0, name: "nl_oya_c_l_wj" }
+124: Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(157), unk2: 1, name: "n_ste_l_wj_ex" }
+125: Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(158), unk2: 1, name: "n_sude_l_wj_ex" }
+126: Bone { mode: Rotation, parent: Some(127), pole_target: None, mirror: Some(159), unk2: 1, name: "n_sude_b_l_wj_ex" }
+127: Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(160), unk2: 1, name: "n_hiji_l_wj_ex" }
+128: Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(161), unk2: 3, name: "n_up_kata_l_ex" }
+129: Bone { mode: Rotation, parent: Some(102), pole_target: None, mirror: Some(162), unk2: 4, name: "n_skata_l_wj_cd_ex" }
+130: Bone { mode: Rotation, parent: Some(131), pole_target: None, mirror: Some(163), unk2: 4, name: "n_skata_b_l_wj_cd_cu_ex" }
+131: Bone { mode: Rotation, parent: Some(132), pole_target: None, mirror: Some(164), unk2: 4, name: "n_skata_c_l_wj_cd_cu_ex" }
+132: Bone { mode: Rotation, parent: Some(7), pole_target: None, mirror: Some(99), unk2: 0, name: "n_waki_r" }
+133: Bone { mode: Rotation, parent: Some(134), pole_target: None, mirror: Some(100), unk2: 0, name: "kl_waki_r_wj" }
+134: Bone { mode: Position, parent: Some(7), pole_target: None, mirror: Some(101), unk2: 0, name: "tl_up_kata_r" }
+135: Bone { mode: Type5, parent: Some(135), pole_target: Some(136), mirror: Some(102), unk2: 0, name: "c_kata_r" }
+136: Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(103), unk2: 0, name: "kl_te_r_wj" }
+137: Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(104), unk2: 3, name: "n_hito_r_ex" }
+138: Bone { mode: Rotation, parent: Some(141), pole_target: None, mirror: Some(105), unk2: 0, name: "nl_hito_r_wj" }
+139: Bone { mode: Rotation, parent: Some(142), pole_target: None, mirror: Some(106), unk2: 0, name: "nl_hito_b_r_wj" }
+140: Bone { mode: Rotation, parent: Some(143), pole_target: None, mirror: Some(107), unk2: 0, name: "nl_hito_c_r_wj" }
+141: Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(108), unk2: 3, name: "n_ko_r_ex" }
+142: Bone { mode: Rotation, parent: Some(145), pole_target: None, mirror: Some(109), unk2: 0, name: "nl_ko_r_wj" }
+143: Bone { mode: Rotation, parent: Some(146), pole_target: None, mirror: Some(110), unk2: 0, name: "nl_ko_b_r_wj" }
+144: Bone { mode: Rotation, parent: Some(147), pole_target: None, mirror: Some(111), unk2: 0, name: "nl_ko_c_r_wj" }
+145: Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(112), unk2: 3, name: "n_kusu_r_ex" }
+146: Bone { mode: Rotation, parent: Some(149), pole_target: None, mirror: Some(113), unk2: 0, name: "nl_kusu_r_wj" }
+147: Bone { mode: Rotation, parent: Some(150), pole_target: None, mirror: Some(114), unk2: 0, name: "nl_kusu_b_r_wj" }
+148: Bone { mode: Rotation, parent: Some(151), pole_target: None, mirror: Some(115), unk2: 0, name: "nl_kusu_c_r_wj" }
+149: Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(116), unk2: 3, name: "n_naka_r_ex" }
+150: Bone { mode: Rotation, parent: Some(153), pole_target: None, mirror: Some(117), unk2: 0, name: "nl_naka_r_wj" }
+151: Bone { mode: Rotation, parent: Some(154), pole_target: None, mirror: Some(118), unk2: 0, name: "nl_naka_b_r_wj" }
+152: Bone { mode: Rotation, parent: Some(155), pole_target: None, mirror: Some(119), unk2: 0, name: "nl_naka_c_r_wj" }
+153: Bone { mode: Rotation, parent: Some(140), pole_target: None, mirror: Some(120), unk2: 3, name: "n_oya_r_ex" }
+154: Bone { mode: Rotation, parent: Some(157), pole_target: None, mirror: Some(121), unk2: 0, name: "nl_oya_r_wj" }
+155: Bone { mode: Rotation, parent: Some(158), pole_target: None, mirror: Some(122), unk2: 0, name: "nl_oya_b_r_wj" }
+156: Bone { mode: Rotation, parent: Some(159), pole_target: None, mirror: Some(123), unk2: 0, name: "nl_oya_c_r_wj" }
+157: Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(124), unk2: 1, name: "n_ste_r_wj_ex" }
+158: Bone { mode: Rotation, parent: Some(139), pole_target: None, mirror: Some(125), unk2: 1, name: "n_sude_r_wj_ex" }
+159: Bone { mode: Rotation, parent: Some(162), pole_target: None, mirror: Some(126), unk2: 1, name: "n_sude_b_r_wj_ex" }
+160: Bone { mode: Rotation, parent: Some(138), pole_target: None, mirror: Some(127), unk2: 1, name: "n_hiji_r_wj_ex" }
+161: Bone { mode: Rotation, parent: Some(138), pole_target: None, mirror: Some(128), unk2: 3, name: "n_up_kata_r_ex" }
+162: Bone { mode: Rotation, parent: Some(137), pole_target: None, mirror: Some(129), unk2: 4, name: "n_skata_r_wj_cd_ex" }
+163: Bone { mode: Rotation, parent: Some(166), pole_target: None, mirror: Some(130), unk2: 4, name: "n_skata_b_r_wj_cd_cu_ex" }
+164: Bone { mode: Rotation, parent: Some(167), pole_target: None, mirror: Some(131), unk2: 4, name: "n_skata_c_r_wj_cd_cu_ex" }
+165: Bone { mode: Rotation, parent: Some(4), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_y" }
+166: Bone { mode: Rotation, parent: Some(169), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_xz" }
+167: Bone { mode: Rotation, parent: Some(170), pole_target: None, mirror: None, unk2: 0, name: "kl_kosi_etc_wj" }
+168: Bone { mode: Type6, parent: Some(171), pole_target: None, mirror: Some(172), unk2: 0, name: "cl_momo_l" }
+169: Bone { mode: Rotation, parent: Some(174), pole_target: None, mirror: Some(173), unk2: 0, name: "kl_asi_l_wj_co" }
+170: Bone { mode: Rotation, parent: Some(175), pole_target: None, mirror: Some(174), unk2: 0, name: "kl_toe_l_wj" }
+171: Bone { mode: Rotation, parent: Some(173), pole_target: None, mirror: Some(175), unk2: 1, name: "n_hiza_l_wj_ex" }
+172: Bone { mode: Type6, parent: Some(171), pole_target: None, mirror: Some(168), unk2: 0, name: "cl_momo_r" }
+173: Bone { mode: Rotation, parent: Some(180), pole_target: None, mirror: Some(169), unk2: 0, name: "kl_asi_r_wj_co" }
+174: Bone { mode: Rotation, parent: Some(181), pole_target: None, mirror: Some(170), unk2: 0, name: "kl_toe_r_wj" }
+175: Bone { mode: Rotation, parent: Some(179), pole_target: None, mirror: Some(171), unk2: 1, name: "n_hiza_r_wj_ex" }
+176: Bone { mode: Rotation, parent: Some(171), pole_target: None, mirror: Some(179), unk2: 4, name: "n_momo_a_l_wj_cd_ex" }
+177: Bone { mode: Rotation, parent: Some(184), pole_target: None, mirror: Some(180), unk2: 1, name: "n_momo_b_l_wj_ex" }
+178: Bone { mode: Rotation, parent: Some(185), pole_target: None, mirror: Some(181), unk2: 1, name: "n_momo_c_l_wj_ex" }
+179: Bone { mode: Rotation, parent: Some(171), pole_target: None, mirror: Some(176), unk2: 4, name: "n_momo_a_r_wj_cd_ex" }
+180: Bone { mode: Rotation, parent: Some(187), pole_target: None, mirror: Some(177), unk2: 1, name: "n_momo_b_r_wj_ex" }
+181: Bone { mode: Rotation, parent: Some(188), pole_target: None, mirror: Some(178), unk2: 1, name: "n_momo_c_r_wj_ex" }
+182: Bone { mode: Rotation, parent: Some(4), pole_target: None, mirror: None, unk2: 4, name: "n_hara_cd_ex" }
+183: Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_b_wj_ex" }
+184: Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_c_wj_ex" }
+-----------------------------
+018: Bone { mode: Rotation, parent: Some(17), pole_target: None, mirror: Some(22), unk2: 2, name: "n_eye_l_wj_ex" }
+098: Bone { mode: Rotation, parent: Some(8), pole_target: None, mirror: None, unk2: 1, name: "n_kubi_wj_ex" }
+104: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(137), unk2: 3, name: "n_hito_l_ex" }
+108: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(141), unk2: 3, name: "n_ko_l_ex" }
+112: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(145), unk2: 3, name: "n_kusu_l_ex" }
+116: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(149), unk2: 3, name: "n_naka_l_ex" }
+120: Bone { mode: Rotation, parent: Some(105), pole_target: None, mirror: Some(153), unk2: 3, name: "n_oya_l_ex" }
+124: Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(157), unk2: 1, name: "n_ste_l_wj_ex" }
+125: Bone { mode: Rotation, parent: Some(104), pole_target: None, mirror: Some(158), unk2: 1, name: "n_sude_l_wj_ex" }
+126: Bone { mode: Rotation, parent: Some(127), pole_target: None, mirror: Some(159), unk2: 1, name: "n_sude_b_l_wj_ex" }
+127: Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(160), unk2: 1, name: "n_hiji_l_wj_ex" }
+128: Bone { mode: Rotation, parent: Some(103), pole_target: None, mirror: Some(161), unk2: 3, name: "n_up_kata_l_ex" }
+129: Bone { mode: Rotation, parent: Some(102), pole_target: None, mirror: Some(162), unk2: 4, name: "n_skata_l_wj_cd_ex" }
+130: Bone { mode: Rotation, parent: Some(131), pole_target: None, mirror: Some(163), unk2: 4, name: "n_skata_b_l_wj_cd_cu_ex" }
+131: Bone { mode: Rotation, parent: Some(132), pole_target: None, mirror: Some(164), unk2: 4, name: "n_skata_c_l_wj_cd_cu_ex" }
+171: Bone { mode: Rotation, parent: Some(173), pole_target: None, mirror: Some(175), unk2: 1, name: "n_hiza_l_wj_ex" }
+176: Bone { mode: Rotation, parent: Some(171), pole_target: None, mirror: Some(179), unk2: 4, name: "n_momo_a_l_wj_cd_ex" }
+177: Bone { mode: Rotation, parent: Some(184), pole_target: None, mirror: Some(180), unk2: 1, name: "n_momo_b_l_wj_ex" }
+178: Bone { mode: Rotation, parent: Some(185), pole_target: None, mirror: Some(181), unk2: 1, name: "n_momo_c_l_wj_ex" }
+182: Bone { mode: Rotation, parent: Some(4), pole_target: None, mirror: None, unk2: 4, name: "n_hara_cd_ex" }
+183: Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_b_wj_ex" }
+184: Bone { mode: Rotation, parent: Some(190), pole_target: None, mirror: None, unk2: 1, name: "n_hara_c_wj_ex" }
+-----------------------------
+set len 583

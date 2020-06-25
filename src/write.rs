@@ -40,9 +40,12 @@ impl Motion {
         let frames = self.sets.iter().map(FrameData::write);
         let bones = self.bones.iter().map(|x| le_u16(*x as u16));
         let len = self.sets.len() as u16;
+        let len  = len + len % 2;
         dbg!(self.sets.len());
+        dbg!(len);
+        dbg!(self.get_bits());
         tuple((
-            le_u16(len + len % 2 + 0x3FFF),
+            le_u16(len + 0x3FFF),
             le_u16(self.get_max_keyframe()),
             slice(self.get_bits()),
             pad(4),
@@ -60,7 +63,7 @@ impl Motion {
                     tuple((
                         le_u32(32),
                         le_u32(36),
-                        le_u32(184),
+                        le_u32(36 + self.sets.len() as u32 / 4 + 1),
                         le_u32(len as u32 - self.bones.len() as u32 * 2 + 32),
                         slice(vec![0; 16]),
                     )),
@@ -73,7 +76,9 @@ impl Motion {
 
 fn pad<W: io::Write>(padding: usize) -> impl SerializeFn<W> {
     move |out: WriteContext<W>| {
-        let pad = out.position as usize % padding;
+        let pos = out.position as usize;
+        let pad = pos % padding;
+        println!("pad#: {}: cur: {}, pad {},  total {}", padding, out.position, pad, out.position + pad as u64);
         slice(vec![0; pad])(out)
     }
 }
