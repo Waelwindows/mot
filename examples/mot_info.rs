@@ -1,8 +1,8 @@
 use anyhow::*;
 use bvh_anim::*;
 use mot::*;
-use structopt::StructOpt;
 use slab_tree::*;
+use structopt::StructOpt;
 
 use std::path::PathBuf;
 
@@ -30,11 +30,11 @@ use nom::number::Endianness;
 
 use cookie_factory::*;
 
-use log::*;
 use env_logger::*;
+use log::*;
 
-use diva_db::mot::*;
 use diva_db::bone::*;
+use diva_db::mot::*;
 
 fn main() -> Result<()> {
     let env = Env::default()
@@ -78,15 +78,26 @@ fn main() -> Result<()> {
         println!("{:03}: {:?}", i, bone);
     }
     println!("-----------------------------");
-    for (i, bone) in skel.bones.iter().enumerate().filter(|(_, x)| x.unk2 != 0 && !x.name.contains("_r_") ) {
+    for (i, bone) in skel
+        .bones
+        .iter()
+        .enumerate()
+        .filter(|(_, x)| x.unk2 != 0 && !x.name.contains("_r_"))
+    {
         println!("{:03}: {:?}", i, bone);
     }
     println!("-----------------------------");
-    let mut tree = TreeBuilder::new().with_root(&skel.bones[0].name).with_capacity(skel.bones.len()).build();
+    let mut tree = TreeBuilder::new()
+        .with_root(&skel.bones[0].name)
+        .with_capacity(skel.bones.len())
+        .build();
     for bone in skel.bones.iter().skip(1) {
         let parent = match bone.parent.and_then(|x| skel.bones.get(x as usize)) {
             Some(n) => n,
-            None => {warn!("bone {} doesn't have a parent", bone.name); continue}
+            None => {
+                warn!("bone {} doesn't have a parent", bone.name);
+                continue;
+            }
         };
         let mut s = String::new();
         tree.write_formatted(&mut s).unwrap();
@@ -99,10 +110,18 @@ fn main() -> Result<()> {
             let mut val = tree.root_mut().unwrap();
             val.append(&bone.name);
         } else {
-            let id = tree.root().unwrap().traverse_pre_order().find(|x| &x.data()[..] == &parent.name[..]).map(|x| x.node_id());
+            let id = tree
+                .root()
+                .unwrap()
+                .traverse_pre_order()
+                .find(|x| &x.data()[..] == &parent.name[..])
+                .map(|x| x.node_id());
             let mut val = match id.and_then(|id| tree.get_mut(id)) {
                 Some(n) => n,
-                None => { warn!("couldn't find parent {} for {}", parent.name, bone.name); continue }
+                None => {
+                    warn!("couldn't find parent {} for {}", parent.name, bone.name);
+                    continue;
+                }
             };
             val.append(&bone.name);
         }

@@ -12,6 +12,7 @@ cgmath = "0.17.0"
 nom_ext = { path = "/home/waelwindows/rust/nom_ext" }
 cookie-factory = "0.3.1"
 diva_db = { path = "/home/waelwindows/rust/diva_db" }
+lazy_static = "1.4.0"
 
 [dev-dependencies]
 structopt = "0.3.14"

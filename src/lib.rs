@@ -1,4 +1,6 @@
 #![feature(seek_convenience)]
+pub mod const_table;
+pub mod qualified;
 pub mod read;
 mod write_alt;
 

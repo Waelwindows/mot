@@ -33,7 +33,7 @@ impl Motion {
             let begin = writer.stream_position()?;
             writer.write(&32u32.to_le_bytes())?;
             writer.write(&36u32.to_le_bytes())?;
-            writer.write(&[0; 16+8])?;
+            writer.write(&[0; 16 + 8])?;
             let len = self.sets.len() as u16;
             println!("set len {}", len);
             // let len  = len + len % 2;
@@ -52,10 +52,10 @@ impl Motion {
                 writer.write(&(*bone as u16).to_le_bytes())?;
             }
             let end = writer.stream_position()?;
-            writer.seek(SeekFrom::Start(begin+8))?;
+            writer.seek(SeekFrom::Start(begin + 8))?;
             writer.write(&(set_off as u32).to_le_bytes())?;
             writer.write(&(bones_off as u32).to_le_bytes())?;
-            Ok(((end-begin) as usize))
+            Ok(((end - begin) as usize))
         }
     }
 }
@@ -63,7 +63,7 @@ impl Motion {
 use std::io;
 
 impl FrameData {
-    fn as_bits(&self) -> u8 {
+    pub(crate) fn as_bits(&self) -> u8 {
         use FrameData::*;
         match self {
             None => 0,
@@ -73,36 +73,34 @@ impl FrameData {
         }
     }
     pub fn write<'a, W: io::Write + io::Seek>(&'a self) -> impl Fn(W) -> io::Result<usize> + 'a {
-        move |mut writer| {
-            match self {
-                Self::Pose(p) => writer.write(&p.to_le_bytes()),
-                Self::Linear(v) => {
-                    writer.write(&(v.len() as u16).to_le_bytes())?;
-                    for frame in v {
-                        writer.write(&frame.frame.to_le_bytes())?;
-                    }
-                    let pos = writer.stream_position()?;
-                    writer.write(&vec![0; pos as usize % 4])?;
-                    for frame in v {
-                        writer.write(&frame.value.to_le_bytes())?;
-                    }
-                    Ok(0)
-                },
-                Self::Smooth(v) => {
-                    writer.write(&(v.len() as u16).to_le_bytes())?;
-                    for frame in v {
-                        writer.write(&frame.keyframe.frame.to_le_bytes())?;
-                    }
-                    let pos = writer.stream_position()?;
-                    writer.write(&vec![0; pos as usize % 4])?;
-                    for frame in v {
-                        writer.write(&frame.keyframe.value.to_le_bytes())?;
-                        writer.write(&frame.interpolation.to_le_bytes())?;
-                    }
-                    Ok(0)
+        move |mut writer| match self {
+            Self::Pose(p) => writer.write(&p.to_le_bytes()),
+            Self::Linear(v) => {
+                writer.write(&(v.len() as u16).to_le_bytes())?;
+                for frame in v {
+                    writer.write(&frame.frame.to_le_bytes())?;
                 }
-                _ => Ok(0)
+                let pos = writer.stream_position()?;
+                writer.write(&vec![0; pos as usize % 4])?;
+                for frame in v {
+                    writer.write(&frame.value.to_le_bytes())?;
+                }
+                Ok(0)
             }
+            Self::Smooth(v) => {
+                writer.write(&(v.len() as u16).to_le_bytes())?;
+                for frame in v {
+                    writer.write(&frame.keyframe.frame.to_le_bytes())?;
+                }
+                let pos = writer.stream_position()?;
+                writer.write(&vec![0; pos as usize % 4])?;
+                for frame in v {
+                    writer.write(&frame.keyframe.value.to_le_bytes())?;
+                    writer.write(&frame.interpolation.to_le_bytes())?;
+                }
+                Ok(0)
+            }
+            _ => Ok(0),
         }
     }
 }
