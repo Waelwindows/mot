@@ -3,6 +3,7 @@ use bvh_anim::*;
 use diva_db::bone::*;
 use diva_db::mot::*;
 use log::*;
+use mot::qualified::*;
 use mot::*;
 use structopt::StructOpt;
 
@@ -20,17 +21,14 @@ struct Opt {
     #[structopt(parse(from_os_str))]
     bone_db: PathBuf,
 
-    /// Input file
-    #[structopt(parse(from_os_str))]
-    input: PathBuf,
-
     #[structopt(parse(from_os_str))]
     bvh: PathBuf,
 
     #[structopt(parse(from_os_str))]
     output: PathBuf,
 
-    offset: Option<usize>,
+    #[structopt(short, long)]
+    dont_add_bones: bool,
 
     focus: Option<String>,
 }
@@ -55,12 +53,6 @@ fn main() -> Result<()> {
     info!("starting up");
 
     let opt = Opt::from_args();
-    let mut file = File::open(&opt.input).context("failed to open mot file")?;
-    let mut data = vec![];
-    file.read_to_end(&mut data)
-        .context("failed to read mot file")?;
-
-    let (_, mut mot) = Motion::parse(&data, Endianness::Little).unwrap();
 
     let mut file = File::open(opt.bvh).context("failed to open bvh")?;
     let mut data = vec![];
@@ -79,19 +71,50 @@ fn main() -> Result<()> {
         .context("failed to read bone_db")?;
     let (_, bone_db) = BoneDatabase::read(&data[..]).unwrap();
 
-    for set in mot.sets.iter_mut() {
-        *set = match set {
-            FrameData::None | FrameData::Pose(_) => continue,
-            FrameData::Linear(l) => FrameData::Pose(l[0].value),
-            FrameData::Smooth(l) => FrameData::Pose(l[0].keyframe.value),
-        }
-    }
-
+    let mut anims = vec![];
     for joint in bvh.joints() {
         let name = joint.data().name();
         let bone_id = motset_db.bones.iter().position(|x| &x[..] == &name[..]);
         let mut bone_id = match bone_id {
             Some(n) => n,
+            None if name.contains("_target") => {
+                let new_target = convert_joint_default(&bvh, &joint, false);
+                let name = &name[..name.len() - 7];
+                let bone_id = motset_db
+                    .bones
+                    .iter()
+                    .position(|x| &x[..] == &name[..])
+                    .context("something weird is happening")?;
+                info!("finding {}: {}", name, bone_id);
+                match anims.iter_mut().find(|(i, _)| *i == bone_id) {
+                    Some((_, anim)) => match anim {
+                        Some(BoneAnim::RotationIK { rotation, target }) => {
+                            debug!("setting {}'s target", name);
+                            *target = new_target
+                        }
+                        Some(BoneAnim::ArmIK { rotation, target }) => {
+                            debug!("ARK setting {}'s target", name);
+                            *target = new_target
+                        }
+                        Some(BoneAnim::PositionRotation { position, rotation }) => {
+                            error!("wtf");
+                        }
+                        Some(e) => {
+                            error!("wrong type {:?}", std::mem::discriminant(e));
+                            continue;
+                        }
+                        None => {
+                            error!("Empty");
+                            continue;
+                        }
+                    },
+                    None => {
+                        warn!("bone is empty, skipping");
+                        continue;
+                    }
+                };
+                continue;
+            }
             None if name.contains("_skip") => {
                 trace!("skipping {}", name);
                 continue;
@@ -101,13 +124,6 @@ fn main() -> Result<()> {
                 continue;
             }
         };
-        // debug!("{}: {}", bone_id, name);
-        if name.contains("e_") || name.contains("waki") || name.contains("tl_") {
-            bone_id += 1;
-        }
-        // if name.contains("kl_te") {
-        //     bone_id -= 1;
-        // }
         match opt.focus {
             Some(ref focus) => {
                 if !(name.contains(focus)) {
@@ -116,43 +132,126 @@ fn main() -> Result<()> {
             }
             _ => (),
         };
-        let bone_id = mot.bones.iter().position(|x| *x == bone_id);
-        let bone_id = match bone_id {
+        let bone = bone_db.skeletons[0]
+            .bones
+            .iter()
+            .find(|x| &x.name[..] == &name[..]);
+        let bone = match bone {
             Some(n) => n,
+            None if name.contains("_skip") => {
+                trace!("skipping {}", name);
+                continue;
+            }
             None => {
-                warn!("couldn't find bone `{}` in const table, ignoring", name);
+                warn!("couldn't find bone `{}` in bone_db, ignoring", name);
                 continue;
             }
         };
-
-        let rot = bone_db.skeletons[0]
-            .bones
-            .iter()
-            .find(|x| &x.name[..] == &name[..])
-            .map(|x| x.mode)
-            .unwrap_or(BoneType::Position)
-            == BoneType::Rotation;
-        debug!(
-            "adding {} at {} ({})",
-            name, bone_id, motset_db.bones[mot.bones[bone_id]]
-        );
-        let [x, y, z] = convert_joint_default(&bvh, &joint, rot);
-        mot.sets[3 * bone_id + 0] = x;
-        mot.sets[3 * bone_id + 2] = z;
-        mot.sets[3 * bone_id + 1] = y;
+        // if name.contains("cl_") || name.contains("c_") {
+        //     error!("{}/{}: {:?}", name, bone.name, bone.mode);
+        //     continue;
+        // }
+        match bone.mode {
+            BoneType::Rotation => {
+                let motion = BoneAnim::Rotation(convert_joint_default(&bvh, &joint, true));
+                anims.push((bone_id, Some(motion)));
+            }
+            BoneType::Position => {
+                let motion = BoneAnim::Position(convert_joint_default(&bvh, &joint, false));
+                anims.push((bone_id, Some(motion)));
+            }
+            BoneType::Type3 => {
+                let position = convert_joint_default(&bvh, &joint, false);
+                // let position = Vec3::default();
+                let rotation = convert_joint_default(&bvh, &joint, true);
+                anims.push((
+                    bone_id,
+                    Some(BoneAnim::PositionRotation { position, rotation }),
+                ));
+            }
+            BoneType::Type4 => {
+                let rotation = convert_joint_default(&bvh, &joint, true);
+                let halfpi = std::f32::consts::PI;
+                let target = Vec3 {
+                    x: FrameData::Pose(0.),
+                    y: FrameData::Pose(0.),
+                    z: FrameData::Pose(0.),
+                };
+                if name == "cl_mune" {
+                    dbg!(2);
+                }
+                anims.push((bone_id, Some(BoneAnim::RotationIK { rotation, target })));
+            }
+            BoneType::Type5 => {
+                let rotation = convert_joint_default(&bvh, &joint, true);
+                anims.push((
+                    bone_id,
+                    Some(BoneAnim::ArmIK {
+                        target: Default::default(),
+                        rotation,
+                    }),
+                ));
+            }
+            BoneType::Type6 => {
+                let rotation = convert_joint_default(&bvh, &joint, true);
+                if name.contains("cl_momo") {
+                    error!("cl_momo id: {}", bone_id);
+                }
+                anims.push((
+                    bone_id,
+                    Some(BoneAnim::ArmIK {
+                        target: Default::default(),
+                        rotation,
+                    }),
+                ));
+            }
+            e => unreachable!("Found unexpected bone type: {:?}", e),
+        }
+        info!("adding `{}` as {}", name, bone_id);
     }
 
+
+    if !opt.dont_add_bones {
+        for (id, name) in motset_db
+            .bones
+            .iter()
+            .enumerate()
+            .filter(|(_, x)| x.contains("e_") && x.contains("_cp"))
+        {
+            info!("adding {}", name);
+            anims.push((id, None))
+        }
+        //kl_hara_xz
+        anims.push((2, Some(BoneAnim::Rotation(Vec3::default()))));
+        //kl_hara_etc
+        anims.push((3, Some(BoneAnim::Rotation(Vec3::ZERO))));
+        //n_hara
+        //must be set to be 90 degrees in Y
+        let halfpi = std::f32::consts::FRAC_PI_2;
+        let rot = Vec3 {
+            x: FrameData::None,
+            y: FrameData::Pose(halfpi),
+            z: FrameData::None,
+        };
+        anims.push((4, Some(BoneAnim::Rotation(rot))));
+
+        anims.push((147, Some(BoneAnim::Rotation(Vec3::default()))));
+        anims.push((148, Some(BoneAnim::Rotation(Vec3::default()))));
+    }
+
+    let mut mot = QualifiedMotion { anims };
+    mot.sort(&motset_db);
+
     let mut file = File::create(opt.output)?;
-    mot.write()(&mut file)?;
+    mot.write(&mut file)?;
 
     Ok(())
 }
 
-fn convert(bvh: &Bvh, chan: &Channel, conv: f32, off: f32) -> Vec<Keyframe> {
+fn convert(bvh: &Bvh, chan: &Channel, conv: f32) -> Vec<Keyframe> {
     bvh.frames()
         .map(|i| i[chan])
         .map(|f| f * conv)
-        .map(|f| f + off)
         .enumerate()
         .map(|(i, value)| Keyframe {
             frame: i as u16,
@@ -165,11 +264,10 @@ fn convert33(
     bvh: &Bvh,
     chan: [&Channel; 3],
     (xcon, ycon, zcon): (f32, f32, f32),
-    (xoff, yoff, zoff): (f32, f32, f32),
 ) -> [Vec<Keyframe>; 3] {
-    let x = convert(bvh, chan[0], xcon, xoff);
-    let y = convert(bvh, chan[1], ycon, yoff);
-    let z = convert(bvh, chan[2], zcon, zoff);
+    let x = convert(bvh, chan[0], xcon);
+    let y = convert(bvh, chan[1], ycon);
+    let z = convert(bvh, chan[2], zcon);
     [x, y, z]
 }
 
@@ -177,7 +275,6 @@ fn convert_joint(
     bvh: &Bvh,
     joint: &Joint,
     mut conv: (f32, f32, f32),
-    off: (f32, f32, f32),
     rot: bool,
 ) -> [Vec<Keyframe>; 3] {
     let channels = joint.data().channels();
@@ -190,17 +287,16 @@ fn convert_joint(
         let deg = pi / 180.;
         conv = (deg * conv.0, deg * conv.1, deg * conv.2);
     }
-    convert33(&bvh, [&x, &z, &y], conv, off)
+    convert33(&bvh, [&x, &z, &y], conv)
 }
 
-fn convert_joint_default(bvh: &Bvh, joint: &Joint, rot: bool) -> [FrameData; 3] {
+fn convert_joint_default(bvh: &Bvh, joint: &Joint, rot: bool) -> Vec3 {
     let scale = 1.0;
     let conv = (scale * 1., scale * 1., scale * -1.);
-    let off = (0., 0., 0.);
-    let [x, y, z] = convert_joint(bvh, joint, conv, off, rot);
-    [
-        FrameData::Linear(x),
-        FrameData::Linear(y),
-        FrameData::Linear(z),
-    ]
+    let [x, y, z] = convert_joint(bvh, joint, conv, rot);
+    Vec3 {
+        x: FrameData::Linear(x),
+        y: FrameData::Linear(y),
+        z: FrameData::Linear(z),
+    }
 }

@@ -9,9 +9,9 @@ pub struct QualifiedMotion {
 
 #[derive(Debug, PartialEq, PartialOrd, Clone)]
 pub struct Vec3 {
-    x: FrameData,
-    y: FrameData,
-    z: FrameData,
+    pub x: FrameData,
+    pub y: FrameData,
+    pub z: FrameData,
 }
 
 impl Default for Vec3 {
@@ -24,6 +24,12 @@ impl Default for Vec3 {
 }
 
 impl Vec3 {
+    pub const ZERO: Self = Vec3 {
+        x: FrameData::Pose(0.),
+        y: FrameData::Pose(0.),
+        z: FrameData::Pose(0.),
+    };
+
     pub fn to_pose(&mut self) {
         use FrameData::*;
         let poseify = |x: &FrameData| match x {
