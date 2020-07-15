@@ -224,17 +224,4 @@ mod test {
             val.bones.iter().position(|&r| r == 71).unwrap()
         );
     }
-
-    #[test]
-    fn bind_test() {
-        use diva_db::bone::*;
-
-        let (_, db) = BoneDatabase::read(DB).unwrap();
-        let (_, mot) = Motion::parse(INPUT, Endianness::Little).unwrap();
-        let _skel = &db.skeletons[0];
-        println!("max id {:?}", mot.bones.iter().max());
-        println!("{:?}", mot.bones);
-        println!("Len {}", mot.bones.len());
-        panic!("{:?}", db.skeletons[0].name);
-    }
 }

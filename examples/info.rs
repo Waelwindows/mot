@@ -90,47 +90,47 @@ fn main() -> Result<()> {
     println!("kl_hara_xz: {:?}", get3(qual.anims[2].1.as_ref().unwrap()));
     println!("kl_hara_etc: {:?}", get3(qual.anims[3].1.as_ref().unwrap()));
     println!("n_hara: {:?}", get3(qual.anims[4].1.as_ref().unwrap()));
-    for (id, anim) in qual.anims.iter_mut() {
-        match anim {
-            // Some(BoneAnim::Rotation(p)) => {
-            //     p.to_pose();
-            // }
-            // Some(BoneAnim::Position(p)) => {
-            //     p.to_pose();
-            // }
-            Some(BoneAnim::RotationIK { rotation, target }) => {
-                // rotation.to_pose();
-                // target.to_pose();
-                // *rotation = Vec3::default();
-                let x = get(&rotation.x);
-                let y = get(&rotation.y);
-                let z = get(&rotation.z);
-                println!("{}: rot {:?}", id, (x, y, z));
-                *rotation = Default::default();
-                *rotation = Vec3 {
-                    x: FrameData::Pose(0.),
-                    y: FrameData::Pose(std::f32::consts::PI),
-                    z: FrameData::Pose(0.),
-                };
-                // *target = Default::default();
-            }
-            // Some(BoneAnim::ArmIK { target, rotation }) => {
-            //     target.to_pose();
-            //     rotation.to_pose()
-            // }
-            // Some(BoneAnim::PositionIKRotation { position, target }) => {
-            //     position.to_pose();
-            //     target.to_pose()
-            // }
-            // Some(BoneAnim::PositionRotation { position, rotation }) => {
-            //     position.to_pose();
-            // }
-            _ => continue,
-        }
-        // println!("reset bone");
-    }
+    // for (id, anim) in qual.anims.iter_mut() {
+    //     match anim {
+    //         // Some(BoneAnim::Rotation(p)) => {
+    //         //     p.to_pose();
+    //         // }
+    //         // Some(BoneAnim::Position(p)) => {
+    //         //     p.to_pose();
+    //         // }
+    //         Some(BoneAnim::RotationIK { rotation, target }) => {
+    //             // rotation.to_pose();
+    //             // target.to_pose();
+    //             // *rotation = Vec3::default();
+    //             let x = get(&rotation.x);
+    //             let y = get(&rotation.y);
+    //             let z = get(&rotation.z);
+    //             println!("{}: rot {:?}", id, (x, y, z));
+    //             *rotation = Default::default();
+    //             *rotation = Vec3 {
+    //                 x: FrameData::Pose(0.),
+    //                 y: FrameData::Pose(std::f32::consts::PI),
+    //                 z: FrameData::Pose(0.),
+    //             };
+    //             // *target = Default::default();
+    //         }
+    //         // Some(BoneAnim::ArmIK { target, rotation }) => {
+    //         //     target.to_pose();
+    //         //     rotation.to_pose()
+    //         // }
+    //         // Some(BoneAnim::PositionIKRotation { position, target }) => {
+    //         //     position.to_pose();
+    //         //     target.to_pose()
+    //         // }
+    //         // Some(BoneAnim::PositionRotation { position, rotation }) => {
+    //         //     position.to_pose();
+    //         // }
+    //         _ => continue,
+    //     }
+    //     // println!("reset bone");
+    // }
     qual.anims.sort_by(|x, y| x.0.cmp(&y.0));
-    qual.sort(&motset_db);
+    // qual.sort(&motset_db);
     // let leg_l = qual.anims[97].clone();
     // let leg_l_target = qual.anims[98].clone();
     // let gbl = qual.anims[0].clone();

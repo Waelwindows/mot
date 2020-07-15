@@ -172,6 +172,11 @@ fn main() -> Result<()> {
             BoneType::Type4 => {
                 let rotation = convert_joint_default(&bvh, &joint, true);
                 let halfpi = std::f32::consts::PI;
+                let rotation = Vec3 {
+                    x: FrameData::Pose(0.),
+                    y: FrameData::Pose(halfpi),
+                    z: FrameData::Pose(0.),
+                };
                 let target = Vec3 {
                     x: FrameData::Pose(0.),
                     y: FrameData::Pose(0.),
