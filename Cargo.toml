@@ -9,9 +9,9 @@ edition = "2018"
 [dependencies]
 nom = "5.1.0"
 cgmath = "0.17.0"
-nom_ext = { path = "/home/waelwindows/rust/nom_ext" }
+nom_ext = { git="https://github.com/Waelwindows/nom_ext" }
 cookie-factory = "0.3.1"
-diva_db = { path = "/home/waelwindows/rust/diva_db" }
+diva_db = { git="https://github.com/Waelwindows/diva_db" }
 lazy_static = "1.4.0"
 
 [dev-dependencies]
