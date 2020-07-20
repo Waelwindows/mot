@@ -85,11 +85,16 @@ fn main() -> Result<()> {
     };
     let get3 =  |x: &BoneAnim| match x {
         BoneAnim::Rotation(rot) => (get(&rot.x), get(&rot.y), get(&rot.z)),
+        BoneAnim::RotationIK {rotation, target} => (get(&rotation.x), get(&rotation.y), get(&rotation.z)),
+        BoneAnim::ArmIK {rotation, target} => (get(&rotation.x), get(&rotation.y), get(&rotation.z)),
         _ => unreachable!(),
     };
     println!("kl_hara_xz: {:?}", get3(qual.anims[2].1.as_ref().unwrap()));
     println!("kl_hara_etc: {:?}", get3(qual.anims[3].1.as_ref().unwrap()));
     println!("n_hara: {:?}", get3(qual.anims[4].1.as_ref().unwrap()));
+    println!("n_hara: {:?}", get3(qual.anims[6].1.as_ref().unwrap()));
+    println!("c_kata_l: {:?}", get3(qual.anims[104].1.as_ref().unwrap()));
+    println!("c_kata_r: {:?}", get3(qual.anims[137].1.as_ref().unwrap()));
     // for (id, anim) in qual.anims.iter_mut() {
     //     match anim {
     //         // Some(BoneAnim::Rotation(p)) => {

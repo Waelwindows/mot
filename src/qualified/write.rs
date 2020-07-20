@@ -74,8 +74,8 @@ impl BoneAnim {
                     rotation, // guess
                     target,
                 } => {
-                    rotation.write(&mut writer)?;
                     target.write(&mut writer)?;
+                    rotation.write(&mut writer)?;
                 }
                 ArmIK {
                     //Type 5
@@ -136,8 +136,8 @@ impl BoneAnim {
                 vec
             }
             RotationIK { rotation, target } => {
-                let mut vec = rotation.get_bits();
-                vec.append(&mut target.get_bits());
+                let mut vec = target.get_bits();
+                vec.append(&mut rotation.get_bits());
                 vec
             }
             ArmIK { rotation, target } => {
@@ -175,7 +175,7 @@ impl BoneAnim {
                 position.x, position.y, position.z, rotation.x, rotation.y, rotation.z,
             ],
             RotationIK { rotation, target } => vec![
-                rotation.x, rotation.y, rotation.z, target.x, target.y, target.z,
+                target.x, target.y, target.z, rotation.x, rotation.y, rotation.z,
             ], //rotationnown
             ArmIK { rotation, target } => vec![
                 target.x, target.y, target.z, rotation.x, rotation.y, rotation.z,

@@ -89,7 +89,7 @@ fn main() -> Result<()> {
                 match anims.iter_mut().find(|(i, _)| *i == bone_id) {
                     Some((_, anim)) => match anim {
                         Some(BoneAnim::RotationIK { rotation, target }) => {
-                            debug!("setting {}'s target", name);
+                            debug!("ROIK: setting {}'s target", name);
                             *target = new_target
                         }
                         Some(BoneAnim::ArmIK { rotation, target }) => {
@@ -174,17 +174,14 @@ fn main() -> Result<()> {
                 let halfpi = std::f32::consts::PI;
                 let rotation = Vec3 {
                     x: FrameData::Pose(0.),
-                    y: FrameData::Pose(halfpi),
-                    z: FrameData::Pose(0.),
+                    y: FrameData::Pose(0.),
+                    z: FrameData::Pose(-halfpi),
                 };
                 let target = Vec3 {
                     x: FrameData::Pose(0.),
                     y: FrameData::Pose(0.),
                     z: FrameData::Pose(0.),
                 };
-                if name == "cl_mune" {
-                    dbg!(2);
-                }
                 anims.push((bone_id, Some(BoneAnim::RotationIK { rotation, target })));
             }
             BoneType::Type5 => {

@@ -55,9 +55,9 @@ pub enum BoneAnim {
         rotation: Vec3,
     },
     RotationIK {
-        //Type4
-        rotation: Vec3, // guess
+        //Type4; target is first
         target: Vec3,
+        rotation: Vec3, // guess
     },
     ArmIK {
         //Type 5
@@ -127,8 +127,8 @@ impl Motion {
                         rotation: vec3(),
                     },
                     BoneType::Type4 => BoneAnim::RotationIK {
-                        rotation: vec3(),
                         target: vec3(),
+                        rotation: vec3(),
                     },
                     BoneType::Type5 => BoneAnim::ArmIK {
                         target: vec3(),
