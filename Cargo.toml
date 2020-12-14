@@ -1,23 +1,6 @@
-[package]
-name = "mot"
-version = "0.1.0"
-authors = ["waelwindows"]
-edition = "2018"
+[workspace]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-nom = "5.1.0"
-cgmath = "0.17.0"
-nom_ext = { git="https://github.com/Waelwindows/nom_ext" }
-cookie-factory = "0.3.1"
-diva_db = { git="https://github.com/Waelwindows/diva_db" }
-lazy_static = "1.4.0"
-
-[dev-dependencies]
-structopt = "0.3.14"
-anyhow = "1.0.31"
-bvh_anim = "0.4.0"
-log = "0.4.8"
-env_logger = "0.7.1"
-slab_tree = "0.3.2"
+members = [
+    "mot",
+    "mot-cli",
+]
