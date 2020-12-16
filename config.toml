@@ -1,0 +1,23 @@
+mot_db_path = "/home/waelwindows/rust/diva_db/assets/aft_mot_db.bin"
+bone_db_path = "/home/waelwindows/Hatsune Miku Project DIVA Arcade Future Tone/rom/bone_data.bin"
+
+default = [ 
+    "kl_hara_xz",
+    "poggers",
+    "147",
+    "148",
+]
+
+[custom.kl_hara_etc]
+rotation = [0.0, 0.0, 0.0]
+
+[custom.n_hara]
+rotation = [nan, 1.5707964, nan]
+
+[custom.cl_mune]
+position = [0.0, 0.0, 0.0]
+rotation = [0.0, 0.0, -1.5707964]
+
+[custom.cl_kao]
+position = [0.0, 0.0, 0.0]
+rotation = [0.0, 0.0, -1.5707964]

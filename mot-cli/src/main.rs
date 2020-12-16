@@ -5,9 +5,12 @@ use diva_db::mot::*;
 use log::*;
 use mot::qualified::*;
 use mot::*;
+use toml;
 use structopt::StructOpt;
 
 use std::path::PathBuf;
+
+mod descriptor;
 
 #[derive(Debug, StructOpt)]
 #[structopt(
@@ -16,16 +19,16 @@ use std::path::PathBuf;
 )]
 struct Opt {
     #[structopt(parse(from_os_str))]
-    mot_db: PathBuf,
-
-    #[structopt(parse(from_os_str))]
-    bone_db: PathBuf,
-
-    #[structopt(parse(from_os_str))]
     bvh: PathBuf,
 
     #[structopt(parse(from_os_str))]
     output: PathBuf,
+
+    #[structopt(parse(from_os_str))]
+    mot_db: Option<PathBuf>,
+
+    #[structopt(parse(from_os_str))]
+    bone_db: Option<PathBuf>,
 
     #[structopt(short, long)]
     dont_add_bones: bool,
@@ -33,7 +36,7 @@ struct Opt {
     focus: Option<String>,
 }
 
-use std::fs::File;
+use std::fs;
 use std::io::{self, Read};
 
 use mot::read::DeserializeEndian;
@@ -50,23 +53,25 @@ fn main() -> Result<()> {
 
     info!("starting up");
 
+    let data = fs::read_to_string("./config.toml")?;
+    let config: descriptor::Config = match toml::from_str(&data) {
+        Ok(e) => e,
+        Err(e) => {
+            error!("Failed to parse config file: {}", e);
+            Default::default()
+        }
+    };
+    println!("{:?}", config);
+
     let opt = Opt::from_args();
 
-    let mut file = File::open(opt.bvh).context("failed to open bvh")?;
-    let mut data = vec![];
-    file.read_to_end(&mut data).context("failed to read bvh")?;
+    let data = fs::read(opt.bvh).context("failed to open bvh")?;
     let bvh = from_bytes(&data[..])?;
 
-    let mut file = File::open(opt.mot_db).context("failed to open mot_db")?;
-    let mut data = vec![];
-    file.read_to_end(&mut data)
-        .context("failed to read mot_db")?;
+    let data = fs::read(config.mot_db_path.or(opt.mot_db).context("missing mot db path")?).context("failed to open mot_db")?;
     let (_, motset_db) = MotionSetDatabase::read(Endianness::Little)(&data[..]).unwrap();
 
-    let mut file = File::open(opt.bone_db).context("failed to open bone_db")?;
-    let mut data = vec![];
-    file.read_to_end(&mut data)
-        .context("failed to read bone_db")?;
+    let data = fs::read(config.bone_db_path.or(opt.bone_db).context("missing bone_db path")?).context("failed to open bone_db")?;
     let (_, bone_db) = BoneDatabase::read(&data[..]).unwrap();
 
     let mut anims = vec![];
@@ -149,6 +154,9 @@ fn main() -> Result<()> {
         //     error!("{}/{}: {:?}", name, bone.name, bone.mode);
         //     continue;
         // }
+        use descriptor::*;
+        // let custom = config.custom.iter().find(|(x,_)| x == &name).map(|(_,x)| x);
+        // let get_anim = |rot: bool, f| custom.and_then(f).map(From::from).unwrap_or_else(|| convert_joint_default(&bvh, &joint, rot));
         match bone.mode {
             BoneType::Rotation => {
                 let motion = BoneAnim::Rotation(convert_joint_default(&bvh, &joint, true));
@@ -160,7 +168,6 @@ fn main() -> Result<()> {
             }
             BoneType::Type3 => {
                 let position = convert_joint_default(&bvh, &joint, false);
-                // let position = Vec3::default();
                 let rotation = convert_joint_default(&bvh, &joint, true);
                 anims.push((
                     bone_id,
@@ -169,17 +176,7 @@ fn main() -> Result<()> {
             }
             BoneType::Type4 => {
                 let rotation = convert_joint_default(&bvh, &joint, true);
-                let halfpi = std::f32::consts::PI;
-                let rotation = Vec3 {
-                    x: FrameData::Pose(0.),
-                    y: FrameData::Pose(0.),
-                    z: FrameData::Pose(-halfpi),
-                };
-                let target = Vec3 {
-                    x: FrameData::Pose(0.),
-                    y: FrameData::Pose(0.),
-                    z: FrameData::Pose(0.),
-                };
+                let target = convert_joint_default(&bvh, &joint, false);
                 anims.push((bone_id, Some(BoneAnim::RotationIK { rotation, target })));
             }
             BoneType::Type5 => {
@@ -194,9 +191,6 @@ fn main() -> Result<()> {
             }
             BoneType::Type6 => {
                 let rotation = convert_joint_default(&bvh, &joint, true);
-                if name.contains("cl_momo") {
-                    error!("cl_momo id: {}", bone_id);
-                }
                 anims.push((
                     bone_id,
                     Some(BoneAnim::ArmIK {
@@ -207,7 +201,7 @@ fn main() -> Result<()> {
             }
             e => unreachable!("Found unexpected bone type: {:?}", e),
         }
-        info!("adding `{}` as {}", name, bone_id);
+        trace!("adding `{}` as {}", name, bone_id);
     }
 
 
@@ -221,28 +215,59 @@ fn main() -> Result<()> {
             info!("adding {}", name);
             anims.push((id, None))
         }
-        //kl_hara_xz
-        anims.push((2, Some(BoneAnim::Rotation(Vec3::default()))));
-        //kl_hara_etc
-        anims.push((3, Some(BoneAnim::Rotation(Vec3::ZERO))));
-        //n_hara
-        //must be set to be 90 degrees in Y
-        let halfpi = std::f32::consts::FRAC_PI_2;
-        let rot = Vec3 {
-            x: FrameData::None,
-            y: FrameData::Pose(halfpi),
-            z: FrameData::None,
-        };
-        anims.push((4, Some(BoneAnim::Rotation(rot))));
 
-        anims.push((147, Some(BoneAnim::Rotation(Vec3::default()))));
-        anims.push((148, Some(BoneAnim::Rotation(Vec3::default()))));
+        for name in config.default {
+            trace!("{}", name);
+            let bone = bone_db.skeletons[0].bones.iter().find(|x| x.name == name);
+            let mode = match bone {
+                Some(e) => e.mode,
+                None => {
+                    if name.parse::<usize>().is_ok() {
+                        BoneType::Rotation
+                    } else {
+                        warn!("CONFIG: Could not find `{}` in bone_db, skipping", name);
+                        continue;
+                    }
+                }
+            };
+            let id = match name.parse::<usize>() {
+                Ok(id) => id,
+                Err(_) => bone_db.skeletons[0].bones.iter().position(|x| x.name == name).unwrap()
+            };
+            let data = match mode {
+                BoneType::Rotation => BoneAnim::Rotation(Vec3::default()),
+                BoneType::Position => BoneAnim::Position(Vec3::default()),
+                BoneType::Type3 => BoneAnim::PositionRotation { position: Vec3::default(), rotation: Vec3::default() },
+                BoneType::Type4 => BoneAnim::RotationIK { rotation: Vec3::default(), target: Vec3::default() },
+                BoneType::Type5 => BoneAnim::ArmIK { rotation: Vec3::default(), target: Vec3::default() },
+                BoneType::Type6 => BoneAnim::PositionIKRotation { position: Vec3::default(), target: Vec3::default() },
+                BoneType::Type1 => unreachable!("how did you get type1 in configs????")
+            };
+            anims.push((id, Some(data)))
+        }
+
+        ////kl_hara_xz
+        //anims.push((2, Some(BoneAnim::Rotation(Vec3::default()))));
+        ////kl_hara_etc
+        //anims.push((3, Some(BoneAnim::Rotation(Vec3::ZERO))));
+        ////n_hara
+        ////must be set to be 90 degrees in Y
+        //let halfpi = std::f32::consts::FRAC_PI_2;
+        //let rot = Vec3 {
+        //    x: FrameData::None,
+        //    y: FrameData::Pose(halfpi),
+        //    z: FrameData::None,
+        //};
+        //anims.push((4, Some(BoneAnim::Rotation(rot))));
+
+        //anims.push((147, Some(BoneAnim::Rotation(Vec3::default()))));
+        //anims.push((148, Some(BoneAnim::Rotation(Vec3::default()))));
     }
 
     let mut mot = QualifiedMotion { anims };
     mot.sort(&motset_db);
 
-    let mut file = File::create(opt.output)?;
+    let mut file = fs::File::create(opt.output)?;
     mot.write(&mut file)?;
 
     Ok(())
