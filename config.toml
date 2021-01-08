@@ -4,15 +4,97 @@ bone_db_path = "/home/waelwindows/Hatsune Miku Project DIVA Arcade Future Tone/r
 default = [ 
     "kl_hara_xz",
     "poggers",
+
+#     "n_ago",
+#     "kl_ago_wj",
+#     "n_tooth_under",
+#     "tl_tooth_under_wj",
+#     "n_eye_l",
+#     "kl_eye_l",
+#     "n_eye_l_wj_ex",
+#     "kl_highlight_l_wj",
+#     "n_eye_r",
+#     "kl_eye_r",
+#     "n_eye_r_wj_ex",
+#     "kl_highlight_r_wj",
+#     "n_eyelid_l_a",
+#     "tl_eyelid_l_a_wj",
+#     "n_eyelid_l_b",
+#     "tl_eyelid_l_b_wj",
+#     "n_eyelid_r_a",
+#     "tl_eyelid_r_a_wj",
+#     "n_eyelid_r_b",
+#     "tl_eyelid_r_b_wj",
+#     "n_kuti_d",
+#     "tl_kuti_d_wj",
+#     "n_kuti_d_l",
+#     "tl_kuti_d_l_wj",
+#     "n_kuti_d_r",
+#     "tl_kuti_d_r_wj",
+#     "n_kuti_ds_l",
+#     "tl_kuti_ds_l_wj",
+#     "n_kuti_ds_r",
+#     "tl_kuti_ds_r_wj",
+#     "n_kuti_l",
+#     "tl_kuti_l_wj",
+#     "n_kuti_m_l",
+#     "tl_kuti_m_l_wj",
+#     "n_kuti_m_r",
+#     "tl_kuti_m_r_wj",
+#     "n_kuti_r",
+#     "tl_kuti_r_wj",
+#     "n_kuti_u",
+#     "tl_kuti_u_wj",
+#     "n_kuti_u_l",
+#     "tl_kuti_u_l_wj",
+#     "n_kuti_u_r",
+#     "tl_kuti_u_r_wj",
+#     "n_mabu_l_d_a",
+#     "tl_mabu_l_d_a_wj",
+#     "n_mabu_l_d_b",
+#     "tl_mabu_l_d_b_wj",
+#     "n_mabu_l_d_c",
+#     "tl_mabu_l_d_c_wj",
+#     "n_mabu_l_u_a",
+#     "tl_mabu_l_u_a_wj",
+#     "n_mabu_l_u_b",
+#     "tl_mabu_l_u_b_wj",
+#     "n_eyelashes_l",
+#     "tl_eyelashes_l_wj",
+#     "n_mabu_l_u_c",
+#     "tl_mabu_l_u_c_wj",
+#     "n_mabu_r_d_a",
+#     "tl_mabu_r_d_a_wj",
+#     "n_mabu_r_d_b",
+#     "tl_mabu_r_d_b_wj",
+#     "n_mabu_r_d_c",
+#     "tl_mabu_r_d_c_wj",
+#     "n_mabu_r_u_a",
+#     "tl_mabu_r_u_a_wj",
+#     "n_mabu_r_u_b",
+#     "tl_mabu_r_u_b_wj",
+#     "n_eyelashes_r",
+#     "tl_eyelashes_r_wj",
+#     "n_mabu_r_u_c",
+#     "tl_mabu_r_u_c_wj",
+#     "n_mayu_l",
+#     "tl_mayu_l_wj",
+#     "n_mayu_l_b",
+#     "tl_mayu_l_b_wj",
+#     "n_mayu_l_c",
+#     "tl_mayu_l_c_wj",
+#     "n_mayu_r",
+#     "tl_mayu_r_wj",
+#     "n_mayu_r_b",
+#     "tl_mayu_r_b_wj",
+#     "n_mayu_r_c",
+#     "tl_mayu_r_c_wj",
+    # "n_tooth_upper",
+    # "tl_tooth_upper_wj",
+
     "147",
     "148",
 ]
-
-[custom.kl_hara_etc]
-rotation = [0.0, 0.0, 0.0]
-
-[custom.n_hara]
-rotation = [nan, 1.5707964, nan]
 
 [custom.cl_mune]
 position = [0.0, 0.0, 0.0]
@@ -21,3 +103,18 @@ rotation = [0.0, 0.0, -1.5707964]
 [custom.cl_kao]
 position = [0.0, 0.0, 0.0]
 rotation = [0.0, 0.0, -1.5707964]
+
+[custom.face_root]
+rotation = [1.5707964, nan, 1.5707964]
+
+[custom.n_waki_l]
+rotation = [1.5707964, nan, 1.5707964]
+
+[custom.n_waki_r]
+rotation = [1.5707964, nan, 1.5707964]
+
+[custom.c_kata_l]
+rotation = [-1.5707964, -1.5707964, -1.5707964]
+
+[custom.c_kata_r]
+rotation = [-1.5707964, 1.5707964, 1.5707964]

@@ -2,6 +2,7 @@
 /.vscode
 **/*.rs.bk
 Cargo.lock
+config.toml
 tags
 *.bvh
 *.mot
